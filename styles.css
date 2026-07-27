@@ -143,8 +143,21 @@ svg {
   position: absolute;
   z-index: -3;
   inset: 0 0 0 45%;
+  overflow: hidden;
   background:
     radial-gradient(circle at 70% 28%, rgba(255, 255, 255, .98), rgba(255, 255, 255, .94) 55%, #f6f4f1 100%);
+}
+
+.hero__photo-slot img,
+.hero__photo-slot picture {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__photo-slot img {
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .header {
