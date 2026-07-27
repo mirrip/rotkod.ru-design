@@ -87,17 +87,51 @@ body {
 .hotspot {
   position: absolute;
   display: block;
+  overflow: hidden;
+  isolation: isolate;
   border-radius: 14px;
   outline: none;
+  transform: translateZ(0);
+  transform-origin: center;
+  will-change: transform, filter, box-shadow;
   -webkit-tap-highlight-color: transparent;
 }
 
-.hotspot:hover,
+.hotspot__visual {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  max-width: none;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hotspot.is-ready .hotspot__visual {
+  opacity: 1;
+}
+
+.hotspot::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: -35%;
+  background:
+    radial-gradient(
+      circle at var(--shine-x, 50%) var(--shine-y, 50%),
+      rgba(255, 229, 181, .22) 0,
+      rgba(205, 143, 69, .08) 24%,
+      transparent 52%
+    );
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 .hotspot:focus-visible {
-  background: rgba(218, 163, 85, .08);
   box-shadow:
-    0 0 0 1px rgba(229, 178, 104, .7) inset,
-    0 0 18px rgba(202, 132, 47, .22);
+    0 0 0 2px rgba(244, 205, 142, .9) inset,
+    0 0 22px rgba(202, 132, 47, .28);
 }
 
 /* Desktop hotspots — percentages are relative to the approved desktop crop. */
@@ -155,6 +189,66 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .hotspot {
-    transition: background-color .18s ease, box-shadow .18s ease;
+    transition:
+      transform .32s cubic-bezier(.2, .8, .2, 1),
+      filter .32s ease,
+      box-shadow .32s ease;
+  }
+
+  .hotspot__visual {
+    transition: opacity .18s ease;
+  }
+
+  .hotspot::after {
+    transition: opacity .28s ease;
+  }
+
+  .d-consult,
+  .d-talk,
+  .m-consult {
+    animation: quiet-breathe 4.8s ease-in-out infinite;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hotspot:hover {
+    z-index: 5;
+    transform:
+      perspective(700px)
+      translate3d(0, -3px, 12px)
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg))
+      scale(1.012);
+    filter: saturate(1.12) contrast(1.035) brightness(1.025);
+    box-shadow:
+      0 1px 0 rgba(255, 224, 174, .28) inset,
+      0 12px 28px rgba(52, 22, 8, .26),
+      0 0 22px rgba(202, 132, 47, .16);
+  }
+
+  .hotspot:hover::after {
+    opacity: .8;
+  }
+
+  .d-consult:hover,
+  .d-talk:hover,
+  .m-consult:hover {
+    animation-play-state: paused;
+  }
+}
+
+.hotspot:active {
+  transform: translate3d(0, -1px, 0) scale(.992);
+  filter: saturate(1.08) brightness(1.03);
+}
+
+@keyframes quiet-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(202, 132, 47, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 18px rgba(202, 132, 47, .1);
   }
 }
