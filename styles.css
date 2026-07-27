@@ -1348,7 +1348,7 @@ svg {
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 420px) {
   .hero__content {
     top: 14.2%;
   }
