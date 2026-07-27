@@ -113,9 +113,9 @@ svg {
     radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(184, 94, 40, .26), transparent 32%),
     radial-gradient(circle at 18% 78%, rgba(66, 24, 15, .78), transparent 30%),
     linear-gradient(121deg, #120704 0, #28100b 50%, #130906 82%, #0d0806 100%);
-  box-shadow:
-    14px 3px 26px rgba(34, 13, 8, .32),
-    5px 8px 18px rgba(78, 32, 19, .14);
+  filter:
+    drop-shadow(11px 3px 13px rgba(34, 13, 8, .3))
+    drop-shadow(4px 7px 9px rgba(78, 32, 19, .12));
 }
 
 .hero::after {
@@ -145,8 +145,7 @@ svg {
   z-index: -3;
   inset: 0 0 0 43%;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 70% 28%, #fff, #fff 68%, #faf7f3 100%);
+  background: transparent;
 }
 
 .hero__photo-slot img,
@@ -217,28 +216,59 @@ svg {
 }
 
 .menu-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   width: 52px;
   height: 52px;
   border-color: rgba(190, 126, 43, .55);
-  background: radial-gradient(circle at 40% 25%, #382015, #1a0d08);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+  background:
+    radial-gradient(circle at 38% 20%, rgba(101, 59, 34, .5), transparent 45%),
+    linear-gradient(145deg, #2e180f, #150a06 72%);
+  box-shadow:
+    0 9px 22px rgba(0, 0, 0, .22),
+    0 0 0 1px rgba(255, 219, 157, .05) inset;
+}
+
+.menu-button::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  content: "";
+  border: 1px solid rgba(223, 165, 87, .1);
+  border-radius: 50%;
 }
 
 .menu-button span {
+  position: absolute;
+  z-index: 1;
+  top: 17px;
+  left: 50%;
   display: block;
-  width: 19px;
+  width: 18px;
   height: 1px;
-  margin: 2px;
-  background: #d8a15b;
+  margin: 0;
+  background: linear-gradient(90deg, #b6772e, #e1b46f);
+  box-shadow: 0 0 7px rgba(218, 154, 78, .2);
+  transform: translateX(-50%);
   transition: width .25s ease;
 }
 
+.menu-button span:nth-child(1) {
+  top: 17px;
+}
+
 .menu-button span:nth-child(2) {
+  top: 25px;
   width: 14px;
 }
 
+.menu-button span:nth-child(3) {
+  top: 33px;
+}
+
 .menu-button:hover span:nth-child(2) {
-  width: 19px;
+  width: 18px;
 }
 
 .cart-count {
@@ -735,9 +765,10 @@ svg {
     background:
       radial-gradient(circle at 72% 28%, rgba(115, 50, 30, .32), transparent 28%),
       linear-gradient(135deg, #130704 0, #25100a 56%, #0f0704 100%);
-    box-shadow:
-      0 13px 22px rgba(35, 13, 8, .3),
-      0 4px 12px rgba(91, 39, 23, .14);
+    box-shadow: none;
+    filter:
+      drop-shadow(0 9px 10px rgba(35, 13, 8, .32))
+      drop-shadow(0 3px 6px rgba(91, 39, 23, .14));
   }
 
   .hero::after {
@@ -768,7 +799,7 @@ svg {
 
   .hero__photo-slot {
     inset: 28% 0 21%;
-    background: #fff;
+    background: transparent;
   }
 
   .hero__curve {
@@ -779,19 +810,30 @@ svg {
   }
 
   .header {
-    min-height: 70px;
-    gap: 10px;
-    padding: 0 16px;
+    grid-template-columns: 76px minmax(0, 1fr) 76px;
+    min-height: 72px;
+    gap: 0;
+    padding: 0 14px;
+    border-bottom-color: rgba(193, 127, 46, .32);
+    background: linear-gradient(180deg, rgba(22, 10, 6, .16), transparent);
   }
 
   .brand {
     justify-self: center;
-    font-size: clamp(29px, 9vw, 40px);
+    color: #e4bc82;
+    font-size: clamp(31px, 8.8vw, 36px);
+    letter-spacing: .015em;
+    text-shadow:
+      0 1px 0 rgba(255, 230, 184, .12),
+      0 5px 18px rgba(171, 103, 40, .16);
   }
 
   .header__actions {
-    gap: 3px;
-    color: #f1dec4;
+    width: 76px;
+    justify-self: end;
+    justify-content: flex-end;
+    gap: 4px;
+    color: #ecd5b2;
   }
 
   .header__about {
@@ -799,23 +841,50 @@ svg {
   }
 
   .icon-button {
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
   }
 
   .icon-button svg {
-    width: 24px;
-    height: 24px;
+    width: 23px;
+    height: 23px;
   }
 
   .menu-button {
-    width: 43px;
-    height: 43px;
+    justify-self: start;
+    width: 45px;
+    height: 45px;
+    border-color: rgba(206, 142, 60, .58);
+    box-shadow:
+      0 7px 18px rgba(0, 0, 0, .2),
+      0 0 0 1px rgba(255, 219, 157, .05) inset;
+  }
+
+  .menu-button span:nth-child(1) {
+    top: 14px;
+  }
+
+  .menu-button span:nth-child(2) {
+    top: 21px;
+    width: 16px;
+    opacity: .88;
+  }
+
+  .menu-button span:nth-child(3) {
+    top: 28px;
+  }
+
+  .menu-button span {
+    width: 16px;
+  }
+
+  .menu-button:hover span:nth-child(2) {
+    width: 16px;
   }
 
   .cart-count {
-    top: -1px;
-    right: -2px;
+    top: -2px;
+    right: -3px;
     width: 17px;
     height: 17px;
     font-size: 9px;
@@ -824,17 +893,19 @@ svg {
   .mobile-kicker {
     position: absolute;
     z-index: 3;
-    top: 76px;
-    left: 12%;
+    top: 77px;
+    left: 18%;
     display: block;
-    width: 76%;
-    padding: 4px;
-    color: #d8a864;
-    border-top: 1px solid rgba(184, 122, 46, .22);
-    border-bottom: 1px solid rgba(184, 122, 46, .22);
+    width: 64%;
+    padding: 5px 8px 4px;
+    color: #dcb170;
+    border-top: 1px solid rgba(184, 122, 46, .25);
+    border-bottom: 1px solid rgba(184, 122, 46, .17);
     border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(93, 39, 20, .13), transparent 72%);
     font-family: var(--display);
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1;
     text-align: center;
   }
 
