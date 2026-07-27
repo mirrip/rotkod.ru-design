@@ -97,7 +97,8 @@ svg {
   overflow: hidden;
   isolation: isolate;
   color: #f3d09b;
-  background: #fff;
+  background:
+    radial-gradient(circle at 78% 30%, #fff 0, #fff 40%, #f8f5f0 100%);
   border-radius: 0 0 clamp(38px, 4vw, 64px) clamp(38px, 4vw, 64px);
   box-shadow: 0 14px 36px rgba(57, 29, 13, .15);
 }
@@ -106,25 +107,42 @@ svg {
   position: absolute;
   z-index: -1;
   inset: 0 auto 0 0;
-  width: 58%;
+  width: 68%;
   content: "";
-  border-bottom-right-radius: 52% 31%;
   background:
     radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(184, 94, 40, .26), transparent 32%),
     radial-gradient(circle at 18% 78%, rgba(66, 24, 15, .78), transparent 30%),
     linear-gradient(121deg, #120704 0, #28100b 50%, #130906 82%, #0d0806 100%);
-  box-shadow: 35px 0 46px rgba(30, 12, 8, .54);
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 260% at 0 42%,
+    #000 0,
+    #000 67%,
+    rgba(0, 0, 0, .94) 74%,
+    rgba(0, 0, 0, .66) 82%,
+    rgba(0, 0, 0, .24) 90%,
+    transparent 97%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 260% at 0 42%,
+    #000 0,
+    #000 67%,
+    rgba(0, 0, 0, .94) 74%,
+    rgba(0, 0, 0, .66) 82%,
+    rgba(0, 0, 0, .24) 90%,
+    transparent 97%
+  );
 }
 
 .hero::after {
   position: absolute;
   z-index: -2;
-  inset: -7% auto -7% 42%;
-  width: 25%;
+  inset: -9% auto -9% 38%;
+  width: 36%;
   content: "";
-  background: linear-gradient(90deg, rgba(31, 13, 9, .74), rgba(61, 28, 19, .18), transparent);
-  filter: blur(26px);
-  transform: rotate(7deg);
+  background:
+    radial-gradient(ellipse at 0 48%, rgba(40, 16, 10, .7), rgba(73, 32, 21, .24) 48%, transparent 76%);
+  filter: blur(36px);
+  transform: rotate(2deg);
 }
 
 .hero__curve {
@@ -142,14 +160,46 @@ svg {
 .hero__photo-slot {
   position: absolute;
   z-index: -3;
-  inset: 0 0 0 45%;
+  inset: 0 0 0 42%;
   overflow: hidden;
+  isolation: isolate;
   background:
-    radial-gradient(circle at 70% 28%, rgba(255, 255, 255, .98), rgba(255, 255, 255, .94) 55%, #f6f4f1 100%);
+    radial-gradient(circle at 70% 28%, #fff, #fff 54%, #f5f1eb 100%);
+}
+
+.hero__photo-slot::before,
+.hero__photo-slot::after {
+  position: absolute;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+}
+
+.hero__photo-slot::before {
+  inset: -8% auto -8% -2%;
+  width: 34%;
+  background: linear-gradient(
+    90deg,
+    rgba(42, 17, 11, .52),
+    rgba(69, 30, 19, .25) 42%,
+    rgba(99, 53, 35, .08) 72%,
+    transparent
+  );
+  filter: blur(24px);
+  transform: translateX(-24%);
+}
+
+.hero__photo-slot::after {
+  inset: auto 0 0;
+  height: 16%;
+  background: linear-gradient(180deg, transparent, rgba(96, 51, 31, .08));
 }
 
 .hero__photo-slot img,
 .hero__photo-slot picture {
+  position: relative;
+  z-index: 0;
+  display: block;
   width: 100%;
   height: 100%;
 }
@@ -728,29 +778,82 @@ svg {
   .hero::before {
     inset: 0 0 auto;
     width: 100%;
-    height: 48%;
-    border-bottom-right-radius: 79% 27%;
+    height: 55%;
     background:
       radial-gradient(circle at 72% 28%, rgba(115, 50, 30, .32), transparent 28%),
       linear-gradient(135deg, #130704 0, #25100a 56%, #0f0704 100%);
-    box-shadow: 0 22px 28px rgba(25, 10, 7, .42);
+    -webkit-mask-image: radial-gradient(
+      ellipse 155% 120% at 0 0,
+      #000 0,
+      #000 70%,
+      rgba(0, 0, 0, .9) 80%,
+      rgba(0, 0, 0, .46) 90%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 155% 120% at 0 0,
+      #000 0,
+      #000 70%,
+      rgba(0, 0, 0, .9) 80%,
+      rgba(0, 0, 0, .46) 90%,
+      transparent 100%
+    );
   }
 
   .hero::after {
     z-index: -1;
     inset: auto 0 0;
     width: 100%;
-    height: 25%;
+    height: 30%;
     background:
       radial-gradient(circle at 88% 12%, rgba(87, 34, 20, .54), transparent 35%),
       linear-gradient(180deg, rgba(31, 13, 8, .78), #110704 24%, #0c0503 100%);
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, .28) 16%,
+      #000 36%,
+      #000
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent,
+      rgba(0, 0, 0, .28) 16%,
+      #000 36%,
+      #000
+    );
     filter: none;
     transform: none;
   }
 
   .hero__photo-slot {
-    inset: 42% 0 24%;
-    background: #fff;
+    inset: 40% 0 22%;
+    background:
+      radial-gradient(circle at 54% 44%, #fff 0, #fff 58%, #f8f3ed 100%);
+  }
+
+  .hero__photo-slot::before {
+    inset: -7% 0 auto;
+    width: 100%;
+    height: 38%;
+    background: linear-gradient(
+      180deg,
+      rgba(48, 19, 12, .52),
+      rgba(70, 31, 20, .2) 48%,
+      transparent
+    );
+    filter: blur(18px);
+    transform: translateY(-28%);
+  }
+
+  .hero__photo-slot::after {
+    height: 27%;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(75, 31, 18, .24)
+    );
+    filter: blur(8px);
   }
 
   .hero__curve {
