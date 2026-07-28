@@ -122,6 +122,47 @@ svg {
     linear-gradient(142deg, #f5f3f0, #fff 48%, #f7f4ef);
 }
 
+.hero__atmosphere {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 43% 46%, rgba(209, 135, 65, .08), transparent 27%),
+    radial-gradient(circle at 78% 38%, rgba(174, 116, 55, .045), transparent 31%),
+    linear-gradient(112deg, rgba(255, 223, 174, .045), transparent 39%, rgba(95, 53, 26, .025) 70%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(255, 245, 226, .08) inset,
+    0 -60px 120px rgba(87, 41, 16, .035) inset;
+}
+
+.hero__atmosphere::before,
+.hero__atmosphere::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgba(181, 121, 57, .09);
+  border-radius: 50%;
+}
+
+.hero__atmosphere::before {
+  top: -24%;
+  right: 5%;
+  width: 44%;
+  aspect-ratio: 1;
+  box-shadow:
+    0 0 0 54px rgba(184, 124, 62, .018),
+    0 0 0 108px rgba(184, 124, 62, .012);
+}
+
+.hero__atmosphere::after {
+  right: 25%;
+  bottom: -17%;
+  width: 25%;
+  aspect-ratio: 1;
+  opacity: .7;
+}
+
 .photo-slot__light {
   position: absolute;
   border: 1px solid rgba(195, 148, 85, .11);
@@ -1011,6 +1052,39 @@ svg {
   }
 }
 
+@media (min-width: 761px) and (max-width: 860px) {
+  .hero__content {
+    top: 19%;
+    max-width: 54%;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+    line-height: .96;
+  }
+
+  .hero__lead {
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .hero__actions {
+    gap: 10px;
+  }
+
+  .hero__actions .button {
+    min-height: 42px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .hero__actions .button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 @media (max-width: 760px) {
   html {
     min-width: 0;
@@ -1076,6 +1150,32 @@ svg {
     background:
       radial-gradient(circle at 54% 51%, #fff 0, #fff 31%, rgba(255, 255, 255, .88) 45%, transparent 67%),
       linear-gradient(180deg, #eee9e3, #fff 54%, #ece5de);
+  }
+
+  .hero__atmosphere {
+    background:
+      radial-gradient(circle at 35% 27%, rgba(210, 135, 65, .1), transparent 25%),
+      radial-gradient(circle at 52% 57%, rgba(157, 98, 43, .055), transparent 28%),
+      linear-gradient(180deg, rgba(255, 220, 168, .035), transparent 62%, rgba(78, 35, 17, .05));
+    box-shadow:
+      0 0 0 1px rgba(255, 244, 224, .065) inset,
+      0 -42px 90px rgba(70, 31, 14, .045) inset;
+  }
+
+  .hero__atmosphere::before {
+    top: 29%;
+    right: -17%;
+    width: 74%;
+    box-shadow:
+      0 0 0 38px rgba(184, 124, 62, .016),
+      0 0 0 76px rgba(184, 124, 62, .01);
+  }
+
+  .hero__atmosphere::after {
+    right: auto;
+    bottom: 18%;
+    left: -28%;
+    width: 66%;
   }
 
   .photo-slot__light {
@@ -1171,7 +1271,7 @@ svg {
   }
 
   .hero__content {
-    top: 15%;
+    top: 18%;
     left: 8.5%;
     max-width: 84%;
   }
@@ -1448,6 +1548,15 @@ svg {
       0 18px 44px rgba(0, 0, 0, .46),
       0 1px rgba(255, 233, 195, .09) inset,
       0 0 0 1px rgba(0, 0, 0, .4);
+    transition:
+      opacity .24s ease,
+      transform .32s cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .mobile-dock.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(100% + 26px));
   }
 
   .mobile-dock__item {
@@ -1521,7 +1630,7 @@ svg {
 
 @media (max-width: 420px) {
   .hero__content {
-    top: 14.2%;
+    top: 18.2%;
   }
 
   .hero h1 {
@@ -1541,24 +1650,16 @@ svg {
 }
 
 @media (max-width: 340px) {
+  body {
+    padding-bottom: 0;
+  }
+
   .hero__content {
-    top: 16.2%;
+    top: 19.1%;
   }
 
   .mobile-dock {
-    right: 8px;
-    left: 8px;
-    grid-template-columns: 48px 51px minmax(0, 1fr);
-    width: calc(100% - 16px);
-  }
-
-  .mobile-dock__cta {
-    padding-right: 9px;
-    padding-left: 11px;
-  }
-
-  .mobile-dock__cta strong {
-    font-size: 14px;
+    display: none;
   }
 }
 
