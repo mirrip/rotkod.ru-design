@@ -5,6 +5,7 @@ const hero = document.querySelector(".hero");
 const cards = document.querySelectorAll(".memory-card");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
+const mobileDock = document.querySelector(".mobile-dock");
 
 function addFrameLimitedPointerEffect(element, update) {
   let frame = 0;
@@ -84,5 +85,27 @@ if (
   for (const item of revealItems) observer.observe(item);
 } else {
   for (const item of revealItems) item.classList.add("is-visible");
+}
+
+if (mobileDock && mobileLayout.matches) {
+  let scrollFrame = 0;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (scrollFrame) return;
+
+      scrollFrame = window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY < 120) {
+          mobileDock.classList.remove("is-hidden");
+        } else {
+          mobileDock.classList.add("is-hidden");
+        }
+        scrollFrame = 0;
+      });
+    },
+    { passive: true }
+  );
 }
 
