@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080302">
   <link rel="canonical" href="https://mirrip.github.io/rotkod.ru-design/">
-  <link rel="stylesheet" href="./styles.css?v=20260727-8">
+  <link rel="stylesheet" href="./styles.css?v=20260728-1">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
@@ -70,7 +70,8 @@
       </div>
     </section>
 
-    <section class="memory reveal" aria-labelledby="memory-title">
+    <section class="memory reveal" id="memory" aria-labelledby="memory-title">
+      <p class="section-kicker">Архив · Древо · Книга · Цифровая память</p>
       <div class="section-heading">
         <span aria-hidden="true"></span>
         <h2 id="memory-title">Один проект — четыре формы памяти</h2>
@@ -81,7 +82,7 @@
         <a class="memory-card" href="./page.html?title=Исследование рода">
           <span class="memory-card__index">01</span>
           <span class="memory-card__media">
-            <img src="./assets/cards/research.webp" alt="Материалы для исследования истории рода">
+            <img src="./assets/cards/research.webp" width="246" height="138" loading="lazy" decoding="async" alt="Материалы для исследования истории рода">
           </span>
           <span class="memory-card__body">
             <strong>Исследование рода</strong>
@@ -93,7 +94,7 @@
         <a class="memory-card" href="./page.html?title=Родословное древо">
           <span class="memory-card__index">02</span>
           <span class="memory-card__media">
-            <img src="./assets/cards/tree.webp" alt="Пример оформления родословного древа">
+            <img src="./assets/cards/tree.webp" width="257" height="138" loading="lazy" decoding="async" alt="Пример оформления родословного древа">
           </span>
           <span class="memory-card__body">
             <strong>Родословное древо</strong>
@@ -105,7 +106,7 @@
         <a class="memory-card" href="./page.html?title=Семейная книга">
           <span class="memory-card__index">03</span>
           <span class="memory-card__media">
-            <img src="./assets/cards/book.webp" alt="Семейная книга в кожаном переплёте">
+            <img src="./assets/cards/book.webp" width="258" height="138" loading="lazy" decoding="async" alt="Семейная книга в кожаном переплёте">
           </span>
           <span class="memory-card__body">
             <strong>Семейная книга</strong>
@@ -117,7 +118,7 @@
         <a class="memory-card" href="./page.html?title=Цифровой архив">
           <span class="memory-card__index">04</span>
           <span class="memory-card__media">
-            <img src="./assets/cards/archive.webp" alt="Цифровой семейный архив на планшете">
+            <img src="./assets/cards/archive.webp" width="257" height="138" loading="lazy" decoding="async" alt="Цифровой семейный архив на планшете">
           </span>
           <span class="memory-card__body">
             <strong>Цифровой архив</strong>
@@ -174,7 +175,22 @@
     </footer>
   </main>
 
-  <script src="./app.js?v=20260727-5"></script>
+  <nav class="mobile-dock" aria-label="Быстрые действия">
+    <a class="mobile-dock__item" href="./page.html?title=Меню" aria-label="Открыть меню">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>
+      <span>Меню</span>
+    </a>
+    <a class="mobile-dock__item" href="#memory" aria-label="Перейти к формам семейной памяти">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22Z"/><path d="M4 5.5V22M8 6h8M8 10h7"/></svg>
+      <span>Проекты</span>
+    </a>
+    <a class="mobile-dock__cta" href="./page.html?title=Получить консультацию">
+      <span><small>Личный куратор</small><strong>Обсудить проект</strong></span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+    </a>
+  </nav>
+
+  <script src="./app.js?v=20260728-1"></script>
 </body>
 </html>
 
