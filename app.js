@@ -87,8 +87,27 @@ if (
   for (const item of revealItems) item.classList.add("is-visible");
 }
 
-if (mobileDock && mobileLayout.matches) {
+if (mobileDock) {
   let scrollFrame = 0;
+  let lastScrollY = window.scrollY;
+
+  const setDockHidden = (hidden) => {
+    mobileDock.classList.toggle("is-hidden", hidden);
+    mobileDock.toggleAttribute("inert", hidden);
+    mobileDock.setAttribute("aria-hidden", String(hidden));
+  };
+
+  const updateMobileDock = () => {
+    const currentScrollY = window.scrollY;
+    const movedDown = currentScrollY > lastScrollY + 2;
+    const nearTop = currentScrollY < 180;
+    const shouldHide = !mobileLayout.matches || nearTop || movedDown;
+
+    setDockHidden(shouldHide);
+    lastScrollY = currentScrollY;
+  };
+
+  updateMobileDock();
 
   window.addEventListener(
     "scroll",
@@ -96,16 +115,12 @@ if (mobileDock && mobileLayout.matches) {
       if (scrollFrame) return;
 
       scrollFrame = window.requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        if (currentScrollY < 120) {
-          mobileDock.classList.remove("is-hidden");
-        } else {
-          mobileDock.classList.add("is-hidden");
-        }
+        updateMobileDock();
         scrollFrame = 0;
       });
     },
     { passive: true }
   );
-}
 
+  mobileLayout.addEventListener("change", updateMobileDock);
+}
