@@ -102,6 +102,7 @@ svg {
 
 /* Hero: a real dark text surface above a separate empty photo area. */
 .hero {
+  --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 890 130 840 230C780 350 820 470 750 600C680 720 530 820 360 900C220 965 90 990 0 1000Z'/%3E%3C/svg%3E");
   position: relative;
   min-height: clamp(570px, 47vw, 690px);
   overflow: hidden;
@@ -254,31 +255,38 @@ svg {
 .hero__transition {
   position: absolute;
   inset: 0 auto 0 0;
+  border-radius: 0;
+  -webkit-mask-image: var(--hero-wave-mask);
+  mask-image: var(--hero-wave-mask);
+  -webkit-mask-position: 0 0;
+  mask-position: 0 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  clip-path: polygon(0 0, 100% 0, 98.5% 6%, 94% 12%, 89% 17%, 84% 23%, 80% 32%, 78% 40%, 80% 48%, 77% 55%, 75% 60%, 70% 69%, 61% 77%, 50% 84%, 36% 90%, 22% 96%, 9% 99%, 0 100%);
   pointer-events: none;
 }
 
 .hero__transition {
   z-index: -2;
-  width: 63%;
-  border-bottom-right-radius: 58% 86%;
-  background: rgba(54, 19, 11, .58);
-  filter: blur(19px);
-  transform: translate(-2px, 2px);
-  opacity: .76;
+  width: 66%;
+  background: rgba(42, 13, 7, .62);
+  filter: blur(15px);
+  transform: translate3d(-.6%, 0, 0);
+  opacity: .58;
 }
 
 .hero__dark-surface {
   z-index: -1;
-  width: 59%;
+  width: 64%;
   overflow: hidden;
-  border-bottom-right-radius: 58% 86%;
   background:
     radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(148, 58, 30, .42), transparent 31%),
     radial-gradient(circle at 12% 79%, rgba(93, 31, 18, .56), transparent 29%),
     radial-gradient(circle at 82% 8%, rgba(102, 38, 22, .2), transparent 27%),
     linear-gradient(128deg, #160704 0, #2b100a 45%, #140705 75%, #080302 100%);
   box-shadow:
-    18px 8px 36px rgba(41, 13, 7, .35),
     -30px -20px 60px rgba(99, 38, 19, .2) inset;
 }
 
@@ -1174,6 +1182,7 @@ svg {
   }
 
   .hero {
+    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V820C910 810 835 835 770 885C700 940 660 985 565 992C390 1005 175 980 0 930Z'/%3E%3C/svg%3E");
     min-height: clamp(600px, 158vw, 720px);
     border-radius: 0 0 34px 34px;
   }
@@ -1182,8 +1191,8 @@ svg {
   .hero__transition {
     inset: 0 0 auto;
     width: 107%;
-    height: 43%;
-    border-bottom-right-radius: 92% 38%;
+    height: 46%;
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 90% 84%, 82% 87%, 75% 91%, 69% 96%, 60% 100%, 40% 100%, 20% 98%, 0 94%);
   }
 
   .hero__dark-surface {
@@ -1195,9 +1204,10 @@ svg {
 
   .hero__transition {
     width: 110%;
-    height: 45%;
-    opacity: .68;
-    filter: blur(8px);
+    height: 47.5%;
+    opacity: .56;
+    filter: blur(11px);
+    transform: translate3d(-1.2%, .8%, 0);
   }
 
   .hero__ember {
@@ -1219,7 +1229,7 @@ svg {
   }
 
   .hero__photo-slot {
-    inset: 38% 0 22%;
+    inset: 37.5% 0 22%;
     background:
       radial-gradient(circle at 68% 52%, rgba(118, 53, 29, .32), transparent 42%),
       #120605;
