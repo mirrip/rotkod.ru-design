@@ -1,6 +1,7 @@
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const mobileLayout = window.matchMedia("(max-width: 760px)");
+const hero = document.querySelector(".hero");
 const cards = document.querySelectorAll(".memory-card");
 const heroSlides = [...document.querySelectorAll(".hero__slide")];
 const heroProgress = document.querySelector(".hero__progress");
@@ -30,6 +31,17 @@ function addFrameLimitedPointerEffect(element, update) {
 }
 
 if (!reduceMotion.matches && finePointer.matches) {
+  if (hero) {
+    addFrameLimitedPointerEffect(hero, (event) => {
+      const bounds = hero.getBoundingClientRect();
+      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+
+      hero.style.setProperty("--glow-x", `${Math.max(8, Math.min(58, x))}%`);
+      hero.style.setProperty("--glow-y", `${Math.max(12, Math.min(88, y))}%`);
+    });
+  }
+
   for (const card of cards) {
     addFrameLimitedPointerEffect(card, (event) => {
       const bounds = card.getBoundingClientRect();
