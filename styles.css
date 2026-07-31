@@ -108,7 +108,7 @@ svg {
   isolation: isolate;
   color: var(--gold-light);
   border-radius: 0 0 clamp(38px, 4vw, 64px) clamp(38px, 4vw, 64px);
-  background: #fff;
+  background: #120605;
   box-shadow:
     0 16px 40px rgba(60, 29, 12, .18),
     0 -1px rgba(255, 255, 255, .7) inset;
@@ -120,9 +120,8 @@ svg {
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(circle at 78% 34%, rgba(255, 255, 255, .96), transparent 25%),
-    radial-gradient(circle at 82% 78%, rgba(237, 230, 220, .38), transparent 32%),
-    linear-gradient(142deg, #f5f3f0, #fff 48%, #f7f4ef);
+    radial-gradient(circle at 76% 42%, rgba(117, 52, 28, .32), transparent 34%),
+    linear-gradient(135deg, #160704, #2a1009 56%, #080302);
 }
 
 .hero__slides,
@@ -165,15 +164,15 @@ svg {
 
 .hero__slide-image {
   --hero-shift-x: 0%;
-  --hero-scale-start: .96;
-  --hero-scale-end: 1;
+  --hero-scale-start: 1.015;
+  --hero-scale-end: 1.055;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: right center;
+  object-fit: cover;
+  object-position: var(--hero-focus-x, 76%) 50%;
   transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
-  transform-origin: right center;
+  transform-origin: var(--hero-focus-x, 76%) 50%;
 }
 
 .hero__slide.is-active .hero__slide-image {
@@ -1220,16 +1219,13 @@ svg {
   }
 
   .hero__photo-slot {
-    inset: 0;
+    inset: 38% 0 22%;
     background:
-      radial-gradient(circle at 54% 51%, #fff 0, #fff 31%, rgba(255, 255, 255, .88) 45%, transparent 67%),
-      linear-gradient(180deg, #eee9e3, #fff 54%, #ece5de);
+      radial-gradient(circle at 68% 52%, rgba(118, 53, 29, .32), transparent 42%),
+      #120605;
   }
 
   .hero__slide {
-    background:
-      radial-gradient(circle at 72% 52%, rgba(102, 49, 29, .32), transparent 44%),
-      #120605;
     transform: translate3d(10%, 0, 0);
   }
 
@@ -1243,12 +1239,12 @@ svg {
 
   .hero__slide-image {
     --hero-shift-x: 0%;
-    --hero-scale-start: .98;
-    --hero-scale-end: 1;
+    --hero-scale-start: 1.01;
+    --hero-scale-end: 1.035;
     width: 100%;
-    object-fit: contain;
-    object-position: center var(--hero-mobile-focus-y, 65%);
-    transform-origin: 50% var(--hero-mobile-focus-y, 65%);
+    object-fit: cover;
+    object-position: var(--hero-mobile-focus-x, 70%) 50%;
+    transform-origin: var(--hero-mobile-focus-x, 70%) 50%;
   }
 
   .hero__atmosphere {
