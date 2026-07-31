@@ -245,6 +245,7 @@ svg {
   z-index: -1;
   width: 64%;
   overflow: hidden;
+  transform-origin: 0 50%;
   background:
     radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(148, 58, 30, .42), transparent 31%),
     radial-gradient(circle at 12% 79%, rgba(93, 31, 18, .56), transparent 29%),
@@ -1808,6 +1809,11 @@ svg {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .hero__dark-surface {
+    animation: hero-wave-breathe 22s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+    will-change: transform;
+  }
+
   .hero__texture {
     animation: hero-texture-drift 38s ease-in-out infinite alternate;
     will-change: transform, opacity;
@@ -1832,6 +1838,11 @@ svg {
   .hero__actions .button::after {
     animation: hero-button-glint 30s ease-in-out 7.5s infinite;
   }
+}
+
+@keyframes hero-wave-breathe {
+  from { transform: translate3d(-.04%, -.04%, 0) scaleX(1.001) scaleY(1.0004); }
+  to { transform: translate3d(-.1%, .12%, 0) scaleX(1.004) scaleY(1.0014); }
 }
 
 @keyframes hero-texture-drift {
@@ -1917,6 +1928,10 @@ svg {
 
   .hero__texture,
   .hero__ember {
+    transform: none;
+  }
+
+  .hero__dark-surface {
     transform: none;
   }
 
