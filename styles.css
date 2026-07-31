@@ -208,44 +208,12 @@ svg {
 
 .hero__atmosphere::before,
 .hero__atmosphere::after {
-  position: absolute;
-  content: "";
-  opacity: .72;
-  border: 1px solid rgba(214, 156, 78, .22);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(232, 175, 99, .09), transparent 22%),
-    radial-gradient(circle at 50% 50%, transparent 58%, rgba(126, 55, 27, .09) 72%, transparent 74%);
-  box-shadow:
-    0 0 0 1px rgba(91, 38, 18, .18) inset,
-    0 0 32px rgba(177, 105, 42, .08),
-    0 0 0 34px rgba(184, 124, 62, .017),
-    0 0 0 68px rgba(184, 124, 62, .01);
-  will-change: transform;
-}
-
-.hero__atmosphere::before {
-  top: -27%;
-  right: 4%;
-  width: 46%;
-  aspect-ratio: 1;
-}
-
-.hero__atmosphere::after {
-  bottom: -24%;
-  left: 18%;
-  width: 34%;
-  aspect-ratio: 1;
-  opacity: .67;
-  border-color: rgba(205, 139, 61, .23);
-  box-shadow:
-    0 0 0 1px rgba(91, 38, 18, .16) inset,
-    0 0 34px rgba(166, 88, 34, .09),
-    0 0 0 26px rgba(164, 91, 37, .015),
-    0 0 0 56px rgba(164, 91, 37, .009);
+  display: none;
+  content: none;
 }
 
 .photo-slot__light {
+  display: none;
   position: absolute;
   z-index: 3;
   border: 1px solid rgba(195, 148, 85, .11);
@@ -306,7 +274,6 @@ svg {
   width: 64%;
   overflow: hidden;
   background:
-    radial-gradient(circle at 36% 42%, rgba(148, 58, 30, .18), transparent 34%),
     radial-gradient(circle at 12% 79%, rgba(93, 31, 18, .56), transparent 29%),
     radial-gradient(circle at 82% 8%, rgba(102, 38, 22, .2), transparent 27%),
     linear-gradient(128deg, #160704 0, #2b100a 45%, #140705 75%, #080302 100%);
@@ -326,23 +293,28 @@ svg {
 
 .hero__ember {
   position: absolute;
+  opacity: .58;
   border-radius: 50%;
-  background: rgba(209, 125, 58, .12);
-  filter: blur(22px);
+  background: radial-gradient(circle, rgba(196, 78, 43, .34) 0, rgba(160, 55, 30, .2) 34%, transparent 72%);
+  filter: blur(28px);
+  pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .hero__ember--one {
-  top: 22%;
-  left: 31%;
-  width: 27%;
-  height: 24%;
+  top: 10%;
+  left: 8%;
+  width: 34%;
+  height: 32%;
 }
 
 .hero__ember--two {
-  bottom: 2%;
-  left: 2%;
-  width: 34%;
-  height: 18%;
+  right: 7%;
+  bottom: 9%;
+  width: 30%;
+  height: 28%;
+  opacity: .46;
+  background: radial-gradient(circle, rgba(218, 120, 57, .28) 0, rgba(126, 42, 23, .19) 38%, transparent 73%);
 }
 
 .hero__curve {
@@ -1241,7 +1213,6 @@ svg {
 
   .hero__dark-surface {
     background:
-      radial-gradient(circle at 42% 38%, rgba(148, 57, 29, .17), transparent 32%),
       radial-gradient(circle at 74% 24%, rgba(100, 35, 21, .34), transparent 27%),
       linear-gradient(138deg, #150603 0, #2b1009 55%, #0b0302 100%);
   }
@@ -1255,7 +1226,22 @@ svg {
   }
 
   .hero__ember {
-    display: none;
+    display: block;
+    filter: blur(22px);
+  }
+
+  .hero__ember--one {
+    top: 12%;
+    left: 3%;
+    width: 48%;
+    height: 40%;
+  }
+
+  .hero__ember--two {
+    right: 4%;
+    bottom: 6%;
+    width: 44%;
+    height: 36%;
   }
 
   .hero::after {
@@ -1310,18 +1296,6 @@ svg {
     box-shadow:
       0 0 0 1px rgba(255, 244, 224, .065) inset,
       0 -42px 90px rgba(70, 31, 14, .045) inset;
-  }
-
-  .hero__atmosphere::before {
-    top: 24%;
-    right: -24%;
-    width: 78%;
-  }
-
-  .hero__atmosphere::after {
-    bottom: 9%;
-    left: -31%;
-    width: 70%;
   }
 
   .photo-slot__light {
@@ -1864,46 +1838,29 @@ svg {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero__atmosphere::before {
-    animation: hero-orbit-one 36s cubic-bezier(.45, .05, .55, .95) -8s infinite alternate;
+  .hero__ember--one {
+    animation: hero-glow-wander-one 29s cubic-bezier(.42, 0, .58, 1) -8s infinite alternate;
   }
 
-  .hero__atmosphere::after {
-    animation: hero-orbit-two 43s cubic-bezier(.42, 0, .58, 1) -21s infinite alternate-reverse;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .photo-slot__light--one {
-    animation: photo-light-drift 20s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-
-  .photo-slot__light--two {
-    animation: photo-light-drift 24s ease-in-out -7s infinite alternate-reverse;
-    will-change: transform;
+  .hero__ember--two {
+    animation: hero-glow-wander-two 37s cubic-bezier(.45, .05, .55, .95) -19s infinite alternate-reverse;
   }
 }
 
-@keyframes hero-orbit-one {
-  0% { transform: translate3d(2%, -5%, 0) rotate(0deg) scale(.97); }
-  24% { transform: translate3d(-14%, 18%, 0) rotate(42deg) scale(1.03); }
-  51% { transform: translate3d(-27%, 34%, 0) rotate(91deg) scale(.95); }
-  76% { transform: translate3d(-9%, 48%, 0) rotate(137deg) scale(1.04); }
-  100% { transform: translate3d(8%, 29%, 0) rotate(182deg) scale(.99); }
+@keyframes hero-glow-wander-one {
+  0% { opacity: .42; transform: translate3d(-8%, -7%, 0) scale(.92); }
+  24% { opacity: .62; transform: translate3d(38%, 18%, 0) scale(1.08); }
+  51% { opacity: .48; transform: translate3d(78%, -5%, 0) scale(.97); }
+  76% { opacity: .68; transform: translate3d(54%, 78%, 0) scale(1.14); }
+  100% { opacity: .5; transform: translate3d(8%, 46%, 0) scale(1); }
 }
 
-@keyframes hero-orbit-two {
-  0% { transform: translate3d(-4%, 7%, 0) rotate(0deg) scale(1.03); }
-  23% { transform: translate3d(18%, -19%, 0) rotate(-48deg) scale(.95); }
-  49% { transform: translate3d(39%, -36%, 0) rotate(-104deg) scale(1.05); }
-  74% { transform: translate3d(55%, -18%, 0) rotate(-161deg) scale(.98); }
-  100% { transform: translate3d(27%, 4%, 0) rotate(-218deg) scale(1.02); }
-}
-
-@keyframes photo-light-drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-2%, 1.5%, 0) scale(1.035); }
+@keyframes hero-glow-wander-two {
+  0% { opacity: .38; transform: translate3d(8%, 12%, 0) scale(1.04); }
+  22% { opacity: .58; transform: translate3d(-64%, -20%, 0) scale(.9); }
+  49% { opacity: .44; transform: translate3d(-108%, 38%, 0) scale(1.12); }
+  75% { opacity: .64; transform: translate3d(-52%, 88%, 0) scale(.96); }
+  100% { opacity: .4; transform: translate3d(6%, 32%, 0) scale(1.08); }
 }
 
 @keyframes hero-photo-zoom {
