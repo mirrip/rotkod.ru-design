@@ -164,13 +164,16 @@ svg {
 }
 
 .hero__slide-image {
+  --hero-shift-x: 0%;
+  --hero-scale-start: .96;
+  --hero-scale-end: 1;
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: var(--hero-focus-x, 76%) 50%;
-  transform: scale(1.015);
-  transform-origin: var(--hero-focus-x, 76%) 50%;
+  object-fit: contain;
+  object-position: right center;
+  transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
+  transform-origin: right center;
 }
 
 .hero__slide.is-active .hero__slide-image {
@@ -180,7 +183,7 @@ svg {
 
 .hero__slide.is-leaving .hero__slide-image {
   animation: none;
-  transform: scale(1.065);
+  transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-end));
 }
 
 .hero__atmosphere {
@@ -1180,7 +1183,7 @@ svg {
   .hero__transition {
     inset: 0 0 auto;
     width: 107%;
-    height: 47%;
+    height: 43%;
     border-bottom-right-radius: 92% 38%;
   }
 
@@ -1193,7 +1196,7 @@ svg {
 
   .hero__transition {
     width: 110%;
-    height: 49%;
+    height: 45%;
     opacity: .68;
     filter: blur(8px);
   }
@@ -1206,7 +1209,7 @@ svg {
     position: absolute;
     z-index: -1;
     inset: auto 0 0;
-    height: 27%;
+    height: 24%;
     content: "";
     border-radius: 48% 48% 0 0 / 16% 16% 0 0;
     background:
@@ -1224,6 +1227,9 @@ svg {
   }
 
   .hero__slide {
+    background:
+      radial-gradient(circle at 72% 52%, rgba(102, 49, 29, .32), transparent 44%),
+      #120605;
     transform: translate3d(10%, 0, 0);
   }
 
@@ -1236,8 +1242,13 @@ svg {
   }
 
   .hero__slide-image {
-    object-position: var(--hero-mobile-focus-x, 55%) 50%;
-    transform-origin: var(--hero-mobile-focus-x, 55%) 50%;
+    --hero-shift-x: 0%;
+    --hero-scale-start: .98;
+    --hero-scale-end: 1;
+    width: 100%;
+    object-fit: contain;
+    object-position: center var(--hero-mobile-focus-y, 65%);
+    transform-origin: 50% var(--hero-mobile-focus-y, 65%);
   }
 
   .hero__atmosphere {
@@ -1833,8 +1844,8 @@ svg {
 }
 
 @keyframes hero-photo-zoom {
-  from { transform: scale(1.015); }
-  to { transform: scale(1.065); }
+  from { transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start)); }
+  to { transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-end)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1860,6 +1871,6 @@ svg {
   .hero__slide.is-active .hero__slide-image,
   .hero__slide.is-leaving .hero__slide-image {
     animation: none !important;
-    transform: scale(1.015);
+    transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
   }
 }
