@@ -1283,12 +1283,12 @@ svg {
 
   .hero__slide-image {
     --hero-shift-x: 0%;
-    --hero-scale-start: 1.01;
-    --hero-scale-end: 1.055;
+    --hero-scale-start: 1.05;
+    --hero-scale-end: 1.18;
     width: 100%;
     object-fit: cover;
     object-position: 50% 50%;
-    transform-origin: 50% 50%;
+    transform-origin: 50% 72%;
   }
 
   .hero__atmosphere {
