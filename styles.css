@@ -208,55 +208,6 @@ svg {
     0 -60px 120px rgba(87, 41, 16, .035) inset;
 }
 
-.hero__atmosphere::before,
-.hero__atmosphere::after {
-  position: absolute;
-  content: "";
-  border: 1px solid rgba(181, 121, 57, .09);
-  border-radius: 50%;
-}
-
-.hero__atmosphere::before {
-  top: -24%;
-  right: 5%;
-  width: 44%;
-  aspect-ratio: 1;
-  box-shadow:
-    0 0 0 54px rgba(184, 124, 62, .018),
-    0 0 0 108px rgba(184, 124, 62, .012);
-}
-
-.hero__atmosphere::after {
-  right: 25%;
-  bottom: -17%;
-  width: 25%;
-  aspect-ratio: 1;
-  opacity: .7;
-}
-
-.photo-slot__light {
-  position: absolute;
-  z-index: 3;
-  border: 1px solid rgba(195, 148, 85, .11);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.photo-slot__light--one {
-  top: 12%;
-  right: 8%;
-  width: 34%;
-  aspect-ratio: 1;
-}
-
-.photo-slot__light--two {
-  right: 24%;
-  bottom: 12%;
-  width: 18%;
-  aspect-ratio: 1;
-  opacity: .55;
-}
-
 .hero__dark-surface,
 .hero__transition {
   position: absolute;
@@ -305,12 +256,14 @@ svg {
 
 .hero__texture {
   position: absolute;
-  inset: 0;
+  inset: -1.2%;
   opacity: .22;
   background:
     repeating-linear-gradient(116deg, transparent 0 18px, rgba(255, 223, 173, .018) 19px 20px),
     repeating-radial-gradient(circle at 24% 43%, rgba(255, 233, 196, .11) 0 1px, transparent 1px 5px);
   mix-blend-mode: overlay;
+  transform: translate3d(0, 0, 0) scale(1.004);
+  transform-origin: 34% 46%;
 }
 
 .hero__ember {
@@ -615,6 +568,24 @@ svg {
   left: 8.3%;
   display: flex;
   gap: clamp(12px, 1.3vw, 20px);
+}
+
+.hero__actions .button {
+  position: relative;
+}
+
+.hero__actions .button::after {
+  position: absolute;
+  z-index: 2;
+  top: -35%;
+  bottom: -35%;
+  left: -34%;
+  width: 18%;
+  content: "";
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 244, 217, .38), transparent);
+  pointer-events: none;
+  transform: translate3d(-260%, 0, 0) skewX(-18deg);
 }
 
 .hero__trust {
@@ -1301,26 +1272,6 @@ svg {
       0 -42px 90px rgba(70, 31, 14, .045) inset;
   }
 
-  .hero__atmosphere::before {
-    top: 29%;
-    right: -17%;
-    width: 74%;
-    box-shadow:
-      0 0 0 38px rgba(184, 124, 62, .016),
-      0 0 0 76px rgba(184, 124, 62, .01);
-  }
-
-  .hero__atmosphere::after {
-    right: auto;
-    bottom: 18%;
-    left: -28%;
-    width: 66%;
-  }
-
-  .photo-slot__light {
-    display: none;
-  }
-
   .hero__curve {
     top: 0;
     left: -10%;
@@ -1856,31 +1807,86 @@ svg {
   }
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .hero__atmosphere::before {
-    animation: atmosphere-drift 18s ease-in-out infinite alternate;
-    will-change: transform;
+@media (prefers-reduced-motion: no-preference) {
+  .hero__texture {
+    animation: hero-texture-drift 38s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
 
-  .photo-slot__light--one {
-    animation: photo-light-drift 20s ease-in-out infinite alternate;
-    will-change: transform;
+  .hero__ember--one {
+    animation: hero-canvas-light-one 32s ease-in-out -9s infinite alternate;
+    will-change: transform, opacity;
   }
 
-  .photo-slot__light--two {
-    animation: photo-light-drift 24s ease-in-out -7s infinite alternate-reverse;
-    will-change: transform;
+  .hero__ember--two {
+    animation: hero-canvas-light-two 41s ease-in-out -21s infinite alternate-reverse;
+    will-change: transform, opacity;
+  }
+
+  .hero h1 {
+    animation:
+      hero-title-intro 1.18s cubic-bezier(.2, .74, .26, 1) .12s both,
+      hero-gold-glint 30s ease-in-out 2.5s infinite;
+  }
+
+  .hero__actions .button::after {
+    animation: hero-button-glint 30s ease-in-out 7.5s infinite;
   }
 }
 
-@keyframes atmosphere-drift {
-  from { transform: translate3d(0, 0, 0) rotate(0); }
-  to { transform: translate3d(-1.4%, 1.2%, 0) rotate(2deg); }
+@keyframes hero-texture-drift {
+  from { opacity: .205; transform: translate3d(-.18%, .12%, 0) scale(1.004); }
+  to { opacity: .225; transform: translate3d(.32%, -.2%, 0) scale(1.008); }
 }
 
-@keyframes photo-light-drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-2%, 1.5%, 0) scale(1.035); }
+@keyframes hero-canvas-light-one {
+  from { opacity: .78; transform: translate3d(-1.5%, .5%, 0) scale(.99); }
+  to { opacity: .9; transform: translate3d(4%, -2%, 0) scale(1.025); }
+}
+
+@keyframes hero-canvas-light-two {
+  from { opacity: .72; transform: translate3d(-1%, -1%, 0) scale(1.01); }
+  to { opacity: .84; transform: translate3d(3%, 1.5%, 0) scale(.985); }
+}
+
+@keyframes hero-title-intro {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0 0, 5% 0, 0 100%, 0 100%);
+    transform: translate3d(-14px, 10px, 0);
+  }
+  58% { opacity: .86; }
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-gold-glint {
+  0%, 5%, 100% {
+    filter: brightness(1);
+    text-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+  }
+  2.2% {
+    filter: brightness(1.045);
+    text-shadow:
+      0 8px 30px rgba(0, 0, 0, .18),
+      0 0 13px rgba(235, 184, 108, .13);
+  }
+}
+
+@keyframes hero-button-glint {
+  0%, 4.2%, 100% {
+    opacity: 0;
+    transform: translate3d(-260%, 0, 0) skewX(-18deg);
+  }
+  1.1% { opacity: 0; }
+  2.7% { opacity: .42; }
+  4.1% {
+    opacity: 0;
+    transform: translate3d(820%, 0, 0) skewX(-18deg);
+  }
 }
 
 @keyframes hero-photo-zoom {
@@ -1900,6 +1906,22 @@ svg {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .hero h1 {
+    opacity: 1;
+    clip-path: none;
+    filter: none;
+    transform: none;
+  }
+
+  .hero__texture,
+  .hero__ember {
+    transform: none;
+  }
+
+  .hero__actions .button::after {
+    display: none;
   }
 
   .hero__slide,
