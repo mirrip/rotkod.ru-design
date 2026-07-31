@@ -8,7 +8,7 @@ const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
 const mobileDock = document.querySelector(".mobile-dock");
-const HERO_SLIDE_INTERVAL = 3600;
+const HERO_SLIDE_INTERVAL = 12000;
 const HERO_TRANSITION_DURATION = 760;
 
 function addFrameLimitedPointerEffect(element, update) {
