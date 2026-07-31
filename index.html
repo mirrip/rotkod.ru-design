@@ -8,15 +8,32 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#080302">
   <link rel="canonical" href="https://mirrip.github.io/rotkod.ru-design/">
-  <link rel="stylesheet" href="./styles.css?v=20260728-4">
+  <link rel="preload" href="./assets/hero/hero-elite.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="./styles.css?v=20260731-1">
 </head>
 <body>
   <a class="skip-link" href="#content">Перейти к содержанию</a>
 
   <main class="site-shell" id="content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__photo-slot" aria-label="Место для будущей фотографии">
-        <span class="visually-hidden">Здесь будет фотография проекта</span>
+      <div class="hero__photo-slot" role="region" aria-roledescription="карусель" aria-label="Родословные книги и подарочные издания">
+        <div class="hero__slides" aria-live="off">
+          <figure class="hero__slide is-active" aria-hidden="false" style="--hero-focus-x: 76%; --hero-mobile-focus-x: 65%;">
+            <img class="hero__slide-image" src="./assets/hero/hero-elite.webp" width="1672" height="941" alt="Элитная родословная книга в подарочном оформлении" loading="eager" fetchpriority="high" decoding="async">
+          </figure>
+          <figure class="hero__slide" aria-hidden="true" style="--hero-focus-x: 76%; --hero-mobile-focus-x: 62%;">
+            <img class="hero__slide-image" src="./assets/hero/hero-gold-tree.webp" width="1675" height="939" alt="Родословная книга с золотым фамильным древом" loading="lazy" fetchpriority="low" decoding="async">
+          </figure>
+          <figure class="hero__slide" aria-hidden="true" style="--hero-focus-x: 76%; --hero-mobile-focus-x: 64%;">
+            <img class="hero__slide-image" src="./assets/hero/hero-troyka.webp" width="1672" height="941" alt="Подарочная родословная книга Тройка" loading="lazy" fetchpriority="low" decoding="async">
+          </figure>
+          <figure class="hero__slide" aria-hidden="true" style="--hero-focus-x: 76%; --hero-mobile-focus-x: 64%;">
+            <img class="hero__slide-image" src="./assets/hero/hero-blue-crest.webp" width="1672" height="941" alt="Синяя фамильная книга с гербом" loading="lazy" fetchpriority="low" decoding="async">
+          </figure>
+          <figure class="hero__slide" aria-hidden="true" style="--hero-focus-x: 76%; --hero-mobile-focus-x: 56%;">
+            <img class="hero__slide-image" src="./assets/hero/hero-wedding.webp" width="1672" height="941" alt="Свадебная родословная книга для истории семьи" loading="lazy" fetchpriority="low" decoding="async">
+          </figure>
+        </div>
         <span class="photo-slot__light photo-slot__light--one" aria-hidden="true"></span>
         <span class="photo-slot__light photo-slot__light--two" aria-hidden="true"></span>
       </div>
@@ -191,6 +208,6 @@
     </a>
   </nav>
 
-  <script src="./app.js?v=20260728-3"></script>
+  <script src="./app.js?v=20260731-1"></script>
 </body>
 </html>

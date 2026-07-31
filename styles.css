@@ -125,6 +125,64 @@ svg {
     linear-gradient(142deg, #f5f3f0, #fff 48%, #f7f4ef);
 }
 
+.hero__slides,
+.hero__slide {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__slides {
+  z-index: 0;
+  overflow: hidden;
+  contain: layout paint;
+}
+
+.hero__slide {
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(7%, 0, 0);
+  transition:
+    opacity 760ms ease,
+    transform 760ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.hero__slide.is-active {
+  z-index: 2;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform;
+}
+
+.hero__slide.is-leaving {
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(-7%, 0, 0);
+  will-change: opacity, transform;
+}
+
+.hero__slide-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--hero-focus-x, 76%) 50%;
+  transform: scale(1.015);
+  transform-origin: var(--hero-focus-x, 76%) 50%;
+}
+
+.hero__slide.is-active .hero__slide-image {
+  animation: hero-photo-zoom 3600ms linear both;
+  will-change: transform;
+}
+
+.hero__slide.is-leaving .hero__slide-image {
+  animation: none;
+  transform: scale(1.065);
+}
+
 .hero__atmosphere {
   position: absolute;
   z-index: 0;
@@ -169,6 +227,7 @@ svg {
 
 .photo-slot__light {
   position: absolute;
+  z-index: 3;
   border: 1px solid rgba(195, 148, 85, .11);
   border-radius: 50%;
   pointer-events: none;
@@ -293,7 +352,7 @@ svg {
   display: flex;
   align-items: center;
   gap: clamp(7px, 1.1vw, 17px);
-  color: #26150d;
+  color: #ecd5b2;
 }
 
 .icon-button {
@@ -518,7 +577,7 @@ svg {
 .hero__actions {
   position: absolute;
   z-index: 4;
-  bottom: 15.2%;
+  bottom: 13.8%;
   left: 8.3%;
   display: flex;
   gap: clamp(12px, 1.3vw, 20px);
@@ -527,7 +586,7 @@ svg {
 .hero__trust {
   position: absolute;
   z-index: 4;
-  bottom: 9.1%;
+  bottom: 7.7%;
   left: 8.3%;
   margin: 0;
   color: rgba(236, 195, 137, .7);
@@ -544,7 +603,7 @@ svg {
 .hero__progress {
   position: absolute;
   z-index: 4;
-  bottom: 4.5%;
+  bottom: 3.1%;
   left: 8.3%;
   display: flex;
   gap: 7px;
@@ -1164,6 +1223,23 @@ svg {
       linear-gradient(180deg, #eee9e3, #fff 54%, #ece5de);
   }
 
+  .hero__slide {
+    transform: translate3d(10%, 0, 0);
+  }
+
+  .hero__slide.is-active {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .hero__slide.is-leaving {
+    transform: translate3d(-10%, 0, 0);
+  }
+
+  .hero__slide-image {
+    object-position: var(--hero-mobile-focus-x, 55%) 50%;
+    transform-origin: var(--hero-mobile-focus-x, 55%) 50%;
+  }
+
   .hero__atmosphere {
     background:
       radial-gradient(circle at 35% 27%, rgba(210, 135, 65, .1), transparent 25%),
@@ -1756,6 +1832,11 @@ svg {
   to { transform: translate3d(-2%, 1.5%, 0) scale(1.035); }
 }
 
+@keyframes hero-photo-zoom {
+  from { transform: scale(1.015); }
+  to { transform: scale(1.065); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1768,5 +1849,17 @@ svg {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .hero__slide,
+  .hero__slide.is-active,
+  .hero__slide.is-leaving {
+    transition: none !important;
+  }
+
+  .hero__slide.is-active .hero__slide-image,
+  .hero__slide.is-leaving .hero__slide-image {
+    animation: none !important;
+    transform: scale(1.015);
   }
 }

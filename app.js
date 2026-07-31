@@ -3,9 +3,13 @@ const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 const mobileLayout = window.matchMedia("(max-width: 760px)");
 const hero = document.querySelector(".hero");
 const cards = document.querySelectorAll(".memory-card");
+const heroSlides = [...document.querySelectorAll(".hero__slide")];
+const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
 const mobileDock = document.querySelector(".mobile-dock");
+const HERO_SLIDE_INTERVAL = 3600;
+const HERO_TRANSITION_DURATION = 760;
 
 function addFrameLimitedPointerEffect(element, update) {
   let frame = 0;
@@ -55,15 +59,88 @@ if (!reduceMotion.matches && finePointer.matches) {
   }
 }
 
-if (!reduceMotion.matches && !mobileLayout.matches && progressItems.length > 1) {
-  let activeProgress = 0;
+if (heroSlides.length > 0) {
+  let activeHeroSlide = Math.max(
+    0,
+    heroSlides.findIndex((slide) => slide.classList.contains("is-active"))
+  );
+  let heroSlideTimer = 0;
+  let heroTransitionTimer = 0;
 
-  window.setInterval(() => {
-    if (document.hidden) return;
-    progressItems[activeProgress].classList.remove("is-active");
-    activeProgress = (activeProgress + 1) % progressItems.length;
-    progressItems[activeProgress].classList.add("is-active");
-  }, 3600);
+  const updateHeroProgress = () => {
+    for (const [index, item] of progressItems.entries()) {
+      item.classList.toggle("is-active", index === activeHeroSlide);
+    }
+
+    heroProgress?.setAttribute(
+      "aria-label",
+      `Слайд ${activeHeroSlide + 1} из ${heroSlides.length}`
+    );
+  };
+
+  const resetHeroCarousel = () => {
+    window.clearTimeout(heroTransitionTimer);
+    activeHeroSlide = 0;
+
+    for (const [index, slide] of heroSlides.entries()) {
+      const isFirstSlide = index === 0;
+      slide.classList.toggle("is-active", isFirstSlide);
+      slide.classList.remove("is-leaving");
+      slide.setAttribute("aria-hidden", String(!isFirstSlide));
+    }
+
+    updateHeroProgress();
+  };
+
+  const showHeroSlide = (nextIndex) => {
+    if (nextIndex === activeHeroSlide) return;
+
+    const currentSlide = heroSlides[activeHeroSlide];
+    const nextSlide = heroSlides[nextIndex];
+
+    window.clearTimeout(heroTransitionTimer);
+    nextSlide.classList.remove("is-leaving");
+    nextSlide.setAttribute("aria-hidden", "false");
+
+    // Keep the incoming frame at its right-side starting position before animating it.
+    void nextSlide.offsetWidth;
+
+    currentSlide.classList.remove("is-active");
+    currentSlide.classList.add("is-leaving");
+    nextSlide.classList.add("is-active");
+    activeHeroSlide = nextIndex;
+    updateHeroProgress();
+
+    heroTransitionTimer = window.setTimeout(() => {
+      currentSlide.classList.remove("is-leaving");
+      currentSlide.setAttribute("aria-hidden", "true");
+    }, HERO_TRANSITION_DURATION);
+  };
+
+  const stopHeroCarousel = () => {
+    window.clearTimeout(heroSlideTimer);
+    heroSlideTimer = 0;
+  };
+
+  const scheduleHeroCarousel = () => {
+    stopHeroCarousel();
+    if (reduceMotion.matches || document.hidden || heroSlides.length < 2) return;
+
+    heroSlideTimer = window.setTimeout(() => {
+      showHeroSlide((activeHeroSlide + 1) % heroSlides.length);
+      scheduleHeroCarousel();
+    }, HERO_SLIDE_INTERVAL);
+  };
+
+  updateHeroProgress();
+  scheduleHeroCarousel();
+
+  document.addEventListener("visibilitychange", scheduleHeroCarousel);
+  reduceMotion.addEventListener("change", (event) => {
+    stopHeroCarousel();
+    if (event.matches) resetHeroCarousel();
+    else scheduleHeroCarousel();
+  });
 }
 
 if (
