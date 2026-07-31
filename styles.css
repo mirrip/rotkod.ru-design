@@ -102,7 +102,7 @@ svg {
 
 /* Hero: a real dark text surface above a separate empty photo area. */
 .hero {
-  --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 890 130 840 230C780 350 820 470 750 600C680 720 530 820 360 900C220 965 90 990 0 1000Z'/%3E%3C/svg%3E");
+  --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C995 70 930 135 855 215C790 285 755 350 785 410C810 465 850 490 830 545C810 600 710 620 680 680C658 725 700 758 742 785C770 820 742 855 680 880C520 950 250 992 0 1000Z'/%3E%3C/svg%3E");
   position: relative;
   min-height: clamp(570px, 47vw, 690px);
   overflow: hidden;
@@ -264,17 +264,24 @@ svg {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  clip-path: polygon(0 0, 100% 0, 98.5% 6%, 94% 12%, 89% 17%, 84% 23%, 80% 32%, 78% 40%, 80% 48%, 77% 55%, 75% 60%, 70% 69%, 61% 77%, 50% 84%, 36% 90%, 22% 96%, 9% 99%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 99.5% 7%, 93% 13.5%, 85.5% 21.5%, 79% 28.5%, 75.5% 35%, 78.5% 41%, 81% 46.5%, 85% 49%, 83% 54.5%, 81% 60%, 71% 62%, 68% 68%, 65.8% 72.5%, 70% 75.8%, 74.2% 78.5%, 77% 82%, 74.2% 85.5%, 68% 88%, 52% 95%, 25% 99.2%, 0 100%);
   pointer-events: none;
+}
+
+@supports ((-webkit-mask-image: linear-gradient(#000, #000)) or (mask-image: linear-gradient(#000, #000))) {
+  .hero__dark-surface,
+  .hero__transition {
+    clip-path: none;
+  }
 }
 
 .hero__transition {
   z-index: -2;
   width: 66%;
-  background: rgba(42, 13, 7, .62);
-  filter: blur(15px);
+  background: rgba(42, 13, 7, .6);
+  filter: blur(17px);
   transform: translate3d(-.6%, 0, 0);
-  opacity: .58;
+  opacity: .55;
 }
 
 .hero__dark-surface {
@@ -1120,6 +1127,14 @@ svg {
 }
 
 @media (max-width: 1050px) {
+  .hero__dark-surface {
+    width: 65.5%;
+  }
+
+  .hero__transition {
+    width: 67.5%;
+  }
+
   .start {
     grid-template-columns: 1fr;
   }
@@ -1182,7 +1197,7 @@ svg {
   }
 
   .hero {
-    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V820C910 810 835 835 770 885C700 940 660 985 565 992C390 1005 175 980 0 930Z'/%3E%3C/svg%3E");
+    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V760C910 750 850 780 790 830C735 875 730 945 680 960C635 975 635 930 595 925C545 920 520 995 445 998C300 1000 145 985 0 955Z'/%3E%3C/svg%3E");
     min-height: clamp(600px, 158vw, 720px);
     border-radius: 0 0 34px 34px;
   }
@@ -1192,7 +1207,7 @@ svg {
     inset: 0 0 auto;
     width: 107%;
     height: 46%;
-    clip-path: polygon(0 0, 100% 0, 100% 82%, 90% 84%, 82% 87%, 75% 91%, 69% 96%, 60% 100%, 40% 100%, 20% 98%, 0 94%);
+    clip-path: polygon(0 0, 100% 0, 100% 77%, 90% 78%, 79% 84%, 73% 94%, 68% 99%, 63.5% 98%, 59.5% 94%, 55% 94%, 52% 100%, 0 100%);
   }
 
   .hero__dark-surface {
