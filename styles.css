@@ -11,8 +11,6 @@
   --line: rgba(159, 99, 34, .3);
   --display: Georgia, "Times New Roman", serif;
   --sans: "Segoe UI", Arial, sans-serif;
-  --glow-x: 36%;
-  --glow-y: 42%;
 }
 
 * {
@@ -212,26 +210,39 @@ svg {
 .hero__atmosphere::after {
   position: absolute;
   content: "";
-  border: 1px solid rgba(181, 121, 57, .09);
+  opacity: .72;
+  border: 1px solid rgba(214, 156, 78, .22);
   border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(232, 175, 99, .09), transparent 22%),
+    radial-gradient(circle at 50% 50%, transparent 58%, rgba(126, 55, 27, .09) 72%, transparent 74%);
+  box-shadow:
+    0 0 0 1px rgba(91, 38, 18, .18) inset,
+    0 0 32px rgba(177, 105, 42, .08),
+    0 0 0 34px rgba(184, 124, 62, .017),
+    0 0 0 68px rgba(184, 124, 62, .01);
+  will-change: transform;
 }
 
 .hero__atmosphere::before {
-  top: -24%;
-  right: 5%;
-  width: 44%;
+  top: -27%;
+  right: 4%;
+  width: 46%;
   aspect-ratio: 1;
-  box-shadow:
-    0 0 0 54px rgba(184, 124, 62, .018),
-    0 0 0 108px rgba(184, 124, 62, .012);
 }
 
 .hero__atmosphere::after {
-  right: 25%;
-  bottom: -17%;
-  width: 25%;
+  bottom: -24%;
+  left: 18%;
+  width: 34%;
   aspect-ratio: 1;
-  opacity: .7;
+  opacity: .67;
+  border-color: rgba(205, 139, 61, .23);
+  box-shadow:
+    0 0 0 1px rgba(91, 38, 18, .16) inset,
+    0 0 34px rgba(166, 88, 34, .09),
+    0 0 0 26px rgba(164, 91, 37, .015),
+    0 0 0 56px rgba(164, 91, 37, .009);
 }
 
 .photo-slot__light {
@@ -295,7 +306,7 @@ svg {
   width: 64%;
   overflow: hidden;
   background:
-    radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(148, 58, 30, .42), transparent 31%),
+    radial-gradient(circle at 36% 42%, rgba(148, 58, 30, .18), transparent 34%),
     radial-gradient(circle at 12% 79%, rgba(93, 31, 18, .56), transparent 29%),
     radial-gradient(circle at 82% 8%, rgba(102, 38, 22, .2), transparent 27%),
     linear-gradient(128deg, #160704 0, #2b100a 45%, #140705 75%, #080302 100%);
@@ -1230,7 +1241,7 @@ svg {
 
   .hero__dark-surface {
     background:
-      radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(148, 57, 29, .4), transparent 29%),
+      radial-gradient(circle at 42% 38%, rgba(148, 57, 29, .17), transparent 32%),
       radial-gradient(circle at 74% 24%, rgba(100, 35, 21, .34), transparent 27%),
       linear-gradient(138deg, #150603 0, #2b1009 55%, #0b0302 100%);
   }
@@ -1302,19 +1313,15 @@ svg {
   }
 
   .hero__atmosphere::before {
-    top: 29%;
-    right: -17%;
-    width: 74%;
-    box-shadow:
-      0 0 0 38px rgba(184, 124, 62, .016),
-      0 0 0 76px rgba(184, 124, 62, .01);
+    top: 24%;
+    right: -24%;
+    width: 78%;
   }
 
   .hero__atmosphere::after {
-    right: auto;
-    bottom: 18%;
-    left: -28%;
-    width: 66%;
+    bottom: 9%;
+    left: -31%;
+    width: 70%;
   }
 
   .photo-slot__light {
@@ -1856,12 +1863,17 @@ svg {
   }
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   .hero__atmosphere::before {
-    animation: atmosphere-drift 18s ease-in-out infinite alternate;
-    will-change: transform;
+    animation: hero-orbit-one 36s cubic-bezier(.45, .05, .55, .95) -8s infinite alternate;
   }
 
+  .hero__atmosphere::after {
+    animation: hero-orbit-two 43s cubic-bezier(.42, 0, .58, 1) -21s infinite alternate-reverse;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .photo-slot__light--one {
     animation: photo-light-drift 20s ease-in-out infinite alternate;
     will-change: transform;
@@ -1873,9 +1885,20 @@ svg {
   }
 }
 
-@keyframes atmosphere-drift {
-  from { transform: translate3d(0, 0, 0) rotate(0); }
-  to { transform: translate3d(-1.4%, 1.2%, 0) rotate(2deg); }
+@keyframes hero-orbit-one {
+  0% { transform: translate3d(2%, -5%, 0) rotate(0deg) scale(.97); }
+  24% { transform: translate3d(-14%, 18%, 0) rotate(42deg) scale(1.03); }
+  51% { transform: translate3d(-27%, 34%, 0) rotate(91deg) scale(.95); }
+  76% { transform: translate3d(-9%, 48%, 0) rotate(137deg) scale(1.04); }
+  100% { transform: translate3d(8%, 29%, 0) rotate(182deg) scale(.99); }
+}
+
+@keyframes hero-orbit-two {
+  0% { transform: translate3d(-4%, 7%, 0) rotate(0deg) scale(1.03); }
+  23% { transform: translate3d(18%, -19%, 0) rotate(-48deg) scale(.95); }
+  49% { transform: translate3d(39%, -36%, 0) rotate(-104deg) scale(1.05); }
+  74% { transform: translate3d(55%, -18%, 0) rotate(-161deg) scale(.98); }
+  100% { transform: translate3d(27%, 4%, 0) rotate(-218deg) scale(1.02); }
 }
 
 @keyframes photo-light-drift {
