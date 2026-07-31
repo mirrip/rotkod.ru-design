@@ -8,6 +8,7 @@ const heroProgress = document.querySelector(".hero__progress");
 const progressItems = [...document.querySelectorAll(".hero__progress i")];
 const revealItems = document.querySelectorAll(".reveal");
 const mobileDock = document.querySelector(".mobile-dock");
+const HERO_INITIAL_SLIDE_INTERVAL = 5000;
 const HERO_SLIDE_INTERVAL = 12000;
 const HERO_TRANSITION_DURATION = 760;
 
@@ -66,6 +67,16 @@ if (heroSlides.length > 0) {
   );
   let heroSlideTimer = 0;
   let heroTransitionTimer = 0;
+  let isInitialHeroFrame = true;
+
+  const getHeroFrameDuration = () =>
+    isInitialHeroFrame && activeHeroSlide === 0
+      ? HERO_INITIAL_SLIDE_INTERVAL
+      : HERO_SLIDE_INTERVAL;
+
+  const setHeroFrameDuration = (slide, duration) => {
+    slide.style.setProperty("--hero-slide-duration", `${duration}ms`);
+  };
 
   const updateHeroProgress = () => {
     for (const [index, item] of progressItems.entries()) {
@@ -81,6 +92,7 @@ if (heroSlides.length > 0) {
   const resetHeroCarousel = () => {
     window.clearTimeout(heroTransitionTimer);
     activeHeroSlide = 0;
+    isInitialHeroFrame = true;
 
     for (const [index, slide] of heroSlides.entries()) {
       const isFirstSlide = index === 0;
@@ -89,6 +101,7 @@ if (heroSlides.length > 0) {
       slide.setAttribute("aria-hidden", String(!isFirstSlide));
     }
 
+    setHeroFrameDuration(heroSlides[0], HERO_INITIAL_SLIDE_INTERVAL);
     updateHeroProgress();
   };
 
@@ -124,22 +137,27 @@ if (heroSlides.length > 0) {
 
   const scheduleHeroCarousel = () => {
     stopHeroCarousel();
-    if (reduceMotion.matches || document.hidden || heroSlides.length < 2) return;
+    if (document.hidden || heroSlides.length < 2) return;
+
+    const frameDuration = getHeroFrameDuration();
+    setHeroFrameDuration(heroSlides[activeHeroSlide], frameDuration);
 
     heroSlideTimer = window.setTimeout(() => {
-      showHeroSlide((activeHeroSlide + 1) % heroSlides.length);
+      const nextIndex = (activeHeroSlide + 1) % heroSlides.length;
+      isInitialHeroFrame = false;
+      setHeroFrameDuration(heroSlides[nextIndex], HERO_SLIDE_INTERVAL);
+      showHeroSlide(nextIndex);
       scheduleHeroCarousel();
-    }, HERO_SLIDE_INTERVAL);
+    }, frameDuration);
   };
 
   updateHeroProgress();
   scheduleHeroCarousel();
 
   document.addEventListener("visibilitychange", scheduleHeroCarousel);
-  reduceMotion.addEventListener("change", (event) => {
+  reduceMotion.addEventListener("change", () => {
     stopHeroCarousel();
-    if (event.matches) resetHeroCarousel();
-    else scheduleHeroCarousel();
+    scheduleHeroCarousel();
   });
 }
 

@@ -183,7 +183,7 @@ svg {
 }
 
 .hero__slide.is-active .hero__slide-image {
-  animation: hero-photo-zoom 12000ms linear both;
+  animation: hero-photo-zoom var(--hero-slide-duration, 5000ms) linear both;
   will-change: transform;
 }
 
@@ -1908,7 +1908,12 @@ svg {
     transition: none !important;
   }
 
-  .hero__slide.is-active .hero__slide-image,
+  .hero__slide.is-active .hero__slide-image {
+    --hero-scale-start: 1.005;
+    --hero-scale-end: 1.018;
+    animation: hero-photo-zoom var(--hero-slide-duration, 5000ms) linear both !important;
+  }
+
   .hero__slide.is-leaving .hero__slide-image {
     animation: none !important;
     transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
