@@ -108,7 +108,7 @@ svg {
   overflow: hidden;
   isolation: isolate;
   color: var(--gold-light);
-  border-radius: 0 0 clamp(38px, 4vw, 64px) clamp(38px, 4vw, 64px);
+  border-radius: 0 0 clamp(38px, 4vw, 64px) clamp(30px, 3.2vw, 50px);
   background: #120605;
   box-shadow:
     0 16px 40px rgba(60, 29, 12, .18),
