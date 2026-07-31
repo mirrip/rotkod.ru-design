@@ -102,7 +102,7 @@ svg {
 
 /* Hero: a real dark text surface above a separate empty photo area. */
 .hero {
-  --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C995 70 930 135 855 215C790 285 755 350 785 410C810 465 850 490 830 545C810 600 710 620 680 680C658 725 700 758 742 785C770 820 742 855 680 880C520 950 250 992 0 1000Z'/%3E%3C/svg%3E");
+  --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000C985 70 910 130 845 225S805 470 755 595S535 825 360 900S110 995 0 1000Z'/%3E%3C/svg%3E");
   position: relative;
   min-height: clamp(570px, 47vw, 690px);
   overflow: hidden;
@@ -264,7 +264,7 @@ svg {
   mask-repeat: no-repeat;
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
-  clip-path: polygon(0 0, 100% 0, 99.5% 7%, 93% 13.5%, 85.5% 21.5%, 79% 28.5%, 75.5% 35%, 78.5% 41%, 81% 46.5%, 85% 49%, 83% 54.5%, 81% 60%, 71% 62%, 68% 68%, 65.8% 72.5%, 70% 75.8%, 74.2% 78.5%, 77% 82%, 74.2% 85.5%, 68% 88%, 52% 95%, 25% 99.2%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 98.5% 7%, 91% 13%, 84.5% 22.5%, 80% 32%, 78% 40%, 80% 47%, 77% 55%, 75.5% 59.5%, 70.5% 71.5%, 60% 79%, 53.5% 82.5%, 36% 90%, 19% 97.5%, 10.5% 99.5%, 0 100%);
   pointer-events: none;
 }
 
@@ -278,7 +278,7 @@ svg {
 .hero__transition {
   z-index: -2;
   width: 66%;
-  background: rgba(42, 13, 7, .6);
+  background: rgba(42, 13, 7, .62);
   filter: blur(17px);
   transform: translate3d(-.6%, 0, 0);
   opacity: .55;
@@ -1197,7 +1197,8 @@ svg {
   }
 
   .hero {
-    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V760C910 750 850 780 790 830C735 875 730 945 680 960C635 975 635 930 595 925C545 920 520 995 445 998C300 1000 145 985 0 955Z'/%3E%3C/svg%3E");
+    --hero-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 0H1000V820C908 808 836 830 770 882C700 936 657 982 562 991C393 1008 178 984 0 932Z'/%3E%3C/svg%3E");
+    --hero-bottom-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 92C145 42 300 38 445 82C560 116 655 100 770 62C870 28 950 35 1000 58V1000H0Z'/%3E%3C/svg%3E");
     min-height: clamp(600px, 158vw, 720px);
     border-radius: 0 0 34px 34px;
   }
@@ -1207,7 +1208,7 @@ svg {
     inset: 0 0 auto;
     width: 107%;
     height: 46%;
-    clip-path: polygon(0 0, 100% 0, 100% 77%, 90% 78%, 79% 84%, 73% 94%, 68% 99%, 63.5% 98%, 59.5% 94%, 55% 94%, 52% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 83%, 90% 84%, 82% 87%, 76% 91%, 70% 96%, 62% 100%, 45% 100%, 25% 99%, 0 94%);
   }
 
   .hero__dark-surface {
@@ -1220,8 +1221,8 @@ svg {
   .hero__transition {
     width: 110%;
     height: 47.5%;
-    opacity: .56;
-    filter: blur(11px);
+    opacity: .54;
+    filter: blur(10px);
     transform: translate3d(-1.2%, .8%, 0);
   }
 
@@ -1233,14 +1234,15 @@ svg {
     position: absolute;
     z-index: -1;
     inset: auto 0 0;
-    height: 24%;
+    height: 24.5%;
     content: "";
-    border-radius: 48% 48% 0 0 / 16% 16% 0 0;
+    border-radius: 0;
     background:
-      radial-gradient(circle at 88% 10%, rgba(108, 39, 22, .42), transparent 32%),
-      linear-gradient(180deg, rgba(37, 14, 8, .92), #100503 38%, #080302 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .72) 22%, #000 44%);
-    mask-image: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, .72) 22%, #000 44%);
+      radial-gradient(circle at 86% 14%, rgba(108, 39, 22, .42), transparent 34%),
+      linear-gradient(180deg, rgba(42, 15, 8, .96), #100503 46%, #080302 100%);
+    -webkit-mask: var(--hero-bottom-wave-mask) 0 0 / 100% 100% no-repeat;
+    mask: var(--hero-bottom-wave-mask) 0 0 / 100% 100% no-repeat;
+    filter: drop-shadow(0 -7px 10px rgba(27, 8, 4, .62));
   }
 
   .hero__photo-slot {
@@ -1418,7 +1420,7 @@ svg {
 
   .hero__actions {
     right: 5.5%;
-    bottom: 10.6%;
+    bottom: 12.3%;
     left: 5.5%;
     gap: 8px;
   }
@@ -1437,7 +1439,7 @@ svg {
 
   .hero__trust {
     right: 4%;
-    bottom: 5.8%;
+    bottom: 6.9%;
     left: 4%;
     font-size: clamp(8px, 2.45vw, 11px);
     text-align: center;
@@ -1445,7 +1447,7 @@ svg {
 
   .hero__progress {
     right: 20%;
-    bottom: 2.2%;
+    bottom: 3%;
     left: 20%;
     justify-content: center;
     gap: 5px;
@@ -1782,12 +1784,12 @@ svg {
 
   .hero__actions {
     right: 12%;
-    bottom: 10.2%;
+    bottom: 12.3%;
     left: 12%;
   }
 
   .hero__trust {
-    bottom: 5.5%;
+    bottom: 6.9%;
   }
 
   .memory {
