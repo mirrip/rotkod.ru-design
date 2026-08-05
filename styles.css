@@ -551,7 +551,10 @@ svg {
   font-weight: 400;
   line-height: .98;
   letter-spacing: .002em;
-  text-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+  text-rendering: geometricPrecision;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, .42),
+    0 3px 7px rgba(0, 0, 0, .2);
 }
 
 .hero__lead {
@@ -1835,7 +1838,6 @@ svg {
       hero-gold-glint 22s ease-in-out 2.5s infinite,
       hero-title-sway 18s ease-in-out 1.4s infinite alternate;
     transform-origin: 14% 58%;
-    will-change: translate, rotate;
   }
 
   .hero__actions .button::after {
@@ -1897,6 +1899,16 @@ svg {
 }
 
 @media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .hero__dark-surface {
+    animation-name: hero-wave-breathe-mobile;
+  }
+
+  .hero::after {
+    animation: hero-bottom-wave-breathe-mobile 16s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+    transform-origin: 50% 100%;
+    will-change: transform;
+  }
+
   .hero__ember {
     display: block;
     opacity: .62;
@@ -1919,8 +1931,18 @@ svg {
 }
 
 @keyframes hero-wave-breathe {
-  from { transform: translate3d(-.3%, -.5%, 0) scaleX(1.008) scaleY(1.01); }
-  to { transform: translate3d(-2.5%, 3.5%, 0) scaleX(1.12) scaleY(1.09); }
+  from { transform: translate3d(-.9%, -1.5%, 0) scaleX(1.024) scaleY(1.03); }
+  to { transform: translate3d(-7.5%, 10.5%, 0) scaleX(1.36) scaleY(1.27); }
+}
+
+@keyframes hero-wave-breathe-mobile {
+  from { transform: translate3d(-.21%, -.35%, 0) scaleX(1.0056) scaleY(1.007); }
+  to { transform: translate3d(-1.75%, 2.45%, 0) scaleX(1.084) scaleY(1.063); }
+}
+
+@keyframes hero-bottom-wave-breathe-mobile {
+  from { transform: translate3d(.21%, .35%, 0) scaleX(1.0056) scaleY(1.007); }
+  to { transform: translate3d(1.75%, -2.45%, 0) scaleX(1.084) scaleY(1.063); }
 }
 
 @keyframes hero-title-sway {
@@ -2002,14 +2024,15 @@ svg {
 
 @keyframes hero-gold-glint {
   0%, 5%, 100% {
-    filter: brightness(1);
-    text-shadow: 0 8px 30px rgba(0, 0, 0, .18);
+    text-shadow:
+      0 1px 1px rgba(0, 0, 0, .42),
+      0 3px 7px rgba(0, 0, 0, .2);
   }
   2.2% {
-    filter: brightness(1.045);
     text-shadow:
-      0 8px 30px rgba(0, 0, 0, .18),
-      0 0 13px rgba(235, 184, 108, .13);
+      0 1px 1px rgba(0, 0, 0, .42),
+      0 3px 7px rgba(0, 0, 0, .2),
+      0 0 5px rgba(244, 202, 139, .2);
   }
 }
 
