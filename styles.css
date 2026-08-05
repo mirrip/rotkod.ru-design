@@ -1844,14 +1844,14 @@ svg {
 }
 
 @keyframes hero-wave-breathe {
-  from { transform: translate3d(-.12%, -.08%, 0) scaleX(1.002) scaleY(1.001); }
-  to { transform: translate3d(-.45%, .3%, 0) scaleX(1.012) scaleY(1.004); }
+  from { transform: translate3d(-.15%, -.1%, 0) scaleX(1.003) scaleY(1.0015); }
+  to { transform: translate3d(-.75%, .55%, 0) scaleX(1.018) scaleY(1.006); }
 }
 
 @keyframes hero-title-sway {
-  0% { translate: 0 0; rotate: -.1deg; }
-  48% { translate: 2px -1px; rotate: .14deg; }
-  100% { translate: -1px 1px; rotate: -.07deg; }
+  0% { translate: -1px .5px; rotate: -.18deg; }
+  48% { translate: 4px -2px; rotate: .24deg; }
+  100% { translate: -2px 1.5px; rotate: -.16deg; }
 }
 
 @keyframes hero-texture-drift {
