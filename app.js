@@ -66,6 +66,27 @@ if (heroSlides.length > 0) {
   );
   let heroSlideTimer = 0;
   let heroTransitionTimer = 0;
+  let heroPreloadTimer = 0;
+  const hydrateHeroSlide = (slide) => {
+    const source = slide.querySelector("source[data-srcset]");
+    const image = slide.querySelector("img[data-src]");
+
+    if (source) {
+      source.srcset = source.dataset.srcset;
+      source.removeAttribute("data-srcset");
+    }
+
+    if (image) {
+      image.src = image.dataset.src;
+      image.removeAttribute("data-src");
+    }
+  };
+  const preloadNextHeroSlide = () => {
+    window.clearTimeout(heroPreloadTimer);
+    heroPreloadTimer = window.setTimeout(() => {
+      hydrateHeroSlide(heroSlides[(activeHeroSlide + 1) % heroSlides.length]);
+    }, 1400);
+  };
   const setHeroFrameDuration = (slide, duration) => {
     slide.style.setProperty("--hero-slide-duration", `${duration}ms`);
   };
@@ -103,6 +124,7 @@ if (heroSlides.length > 0) {
     const nextSlide = heroSlides[nextIndex];
 
     window.clearTimeout(heroTransitionTimer);
+    hydrateHeroSlide(nextSlide);
     nextSlide.classList.remove("is-leaving");
     nextSlide.setAttribute("aria-hidden", "false");
 
@@ -123,7 +145,9 @@ if (heroSlides.length > 0) {
 
   const stopHeroCarousel = () => {
     window.clearTimeout(heroSlideTimer);
+    window.clearTimeout(heroPreloadTimer);
     heroSlideTimer = 0;
+    heroPreloadTimer = 0;
   };
 
   const scheduleHeroCarousel = () => {
@@ -132,6 +156,7 @@ if (heroSlides.length > 0) {
 
     const frameDuration = HERO_SLIDE_INTERVAL;
     setHeroFrameDuration(heroSlides[activeHeroSlide], frameDuration);
+    preloadNextHeroSlide();
 
     heroSlideTimer = window.setTimeout(() => {
       const nextIndex = (activeHeroSlide + 1) % heroSlides.length;
