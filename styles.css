@@ -2109,3 +2109,206 @@ svg {
     transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
   }
 }
+
+/*
+ * Heritage night experiment.
+ * The theme is intentionally isolated behind the body class so the previously
+ * published light version can be restored by removing one class.
+ */
+body.theme-heritage-night {
+  color-scheme: dark;
+  --ink: #efd29b;
+  --cream: #180906;
+  --cream-light: #251009;
+  --gold: #d6a13f;
+  --gold-soft: #e6b85f;
+  --gold-light: #f4d99e;
+  --line: rgba(221, 167, 78, .34);
+  color: #ead1a2;
+  background:
+    radial-gradient(circle at 50% -10%, #32160d 0, #120806 34rem, #020101 78rem),
+    #020101;
+}
+
+.theme-heritage-night .site-shell:not(.simple-page) {
+  border-color: rgba(215, 158, 68, .72);
+  background:
+    radial-gradient(circle at 75% 29%, rgba(133, 67, 28, .17), transparent 34%),
+    radial-gradient(circle at 14% 80%, rgba(111, 39, 22, .16), transparent 37%),
+    linear-gradient(137deg, #1d0b07, #080302 56%, #160704);
+  box-shadow:
+    0 42px 120px rgba(0, 0, 0, .72),
+    0 1px 0 rgba(255, 226, 172, .09) inset,
+    0 0 0 1px rgba(74, 31, 12, .38);
+}
+
+.theme-heritage-night .button--light {
+  color: #1b0b05;
+  border-color: #dca648;
+  background:
+    linear-gradient(112deg, rgba(255, 249, 218, .7), transparent 34%),
+    linear-gradient(180deg, #f5d88f 0%, #d89c36 58%, #bd7924 100%);
+  box-shadow:
+    0 11px 28px rgba(168, 93, 20, .32),
+    0 1px 0 rgba(255, 248, 219, .86) inset,
+    0 -1px 0 rgba(105, 49, 9, .24) inset;
+}
+
+.theme-heritage-night .button--light:hover,
+.theme-heritage-night .button--light:focus-visible {
+  background:
+    linear-gradient(112deg, rgba(255, 252, 229, .84), transparent 34%),
+    linear-gradient(180deg, #ffe6a8 0%, #e8ae49 58%, #ca852c 100%);
+  box-shadow:
+    0 15px 34px rgba(183, 106, 27, .42),
+    0 0 26px rgba(231, 171, 72, .2);
+}
+
+.theme-heritage-night .memory {
+  background:
+    radial-gradient(circle at 72% 22%, rgba(128, 64, 26, .18), transparent 29%),
+    radial-gradient(circle at 8% 91%, rgba(119, 38, 20, .2), transparent 31%),
+    linear-gradient(118deg, #1d0a06, #090302 52%, #1a0906);
+  box-shadow: 0 1px 0 rgba(239, 196, 125, .05) inset;
+}
+
+.theme-heritage-night .memory::before {
+  opacity: .1;
+  background: repeating-radial-gradient(circle at 22% 40%, #e0a450 0 1px, transparent 1px 8px);
+  mix-blend-mode: screen;
+}
+
+.theme-heritage-night .section-kicker {
+  color: #d29a43;
+}
+
+.theme-heritage-night .section-heading h2 {
+  color: #f0d39d;
+  text-shadow: 0 2px 18px rgba(198, 121, 38, .08);
+}
+
+.theme-heritage-night .section-heading span {
+  background: linear-gradient(90deg, transparent, rgba(218, 160, 73, .62));
+}
+
+.theme-heritage-night .section-heading span:last-child {
+  background: linear-gradient(90deg, rgba(218, 160, 73, .62), transparent);
+}
+
+.theme-heritage-night .section-heading span::after {
+  border-color: rgba(225, 171, 87, .62);
+}
+
+.theme-heritage-night .memory-card {
+  border-color: rgba(207, 145, 58, .38);
+  background:
+    radial-gradient(circle at 86% 115%, rgba(112, 39, 20, .3), transparent 47%),
+    linear-gradient(145deg, rgba(42, 17, 10, .96), rgba(12, 5, 3, .98));
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, .3),
+    0 1px 0 rgba(255, 224, 171, .09) inset;
+}
+
+.theme-heritage-night .memory-card:hover,
+.theme-heritage-night .memory-card:focus-visible {
+  border-color: rgba(226, 168, 77, .72);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, .48),
+    0 0 30px rgba(205, 133, 45, .12),
+    0 1px 0 rgba(255, 229, 181, .1) inset;
+}
+
+.theme-heritage-night .memory-card__body {
+  border-top: 1px solid rgba(218, 157, 69, .2);
+}
+
+.theme-heritage-night .memory-card strong {
+  color: #f1d29a;
+}
+
+.theme-heritage-night .memory-card small {
+  color: rgba(244, 226, 196, .66);
+}
+
+.theme-heritage-night .memory-card__arrow {
+  color: #dda64c;
+  border-color: rgba(220, 157, 69, .44);
+  background: rgba(225, 164, 75, .04);
+}
+
+.theme-heritage-night .memory-card:hover .memory-card__arrow {
+  color: #211007;
+  background: linear-gradient(180deg, #efc872, #c8872f);
+}
+
+.theme-heritage-night .start {
+  border-color: rgba(218, 159, 72, .52);
+  background:
+    radial-gradient(circle at 87% 13%, rgba(135, 49, 25, .42), transparent 25%),
+    radial-gradient(circle at 35% 120%, rgba(110, 36, 17, .45), transparent 37%),
+    linear-gradient(110deg, #250e08, #080302 62%, #210b06);
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, .34),
+    0 1px 0 rgba(255, 221, 160, .08) inset;
+}
+
+.theme-heritage-night .start__eyebrow,
+.theme-heritage-night .step strong {
+  color: #e4ad50;
+}
+
+.theme-heritage-night .footer {
+  border-color: rgba(211, 151, 64, .4);
+  background:
+    radial-gradient(circle at 18% 0, rgba(110, 43, 21, .2), transparent 44%),
+    linear-gradient(180deg, rgba(45, 18, 10, .88), rgba(12, 5, 3, .96));
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, .28),
+    0 1px 0 rgba(255, 224, 171, .07) inset;
+}
+
+.theme-heritage-night .footer a {
+  color: rgba(240, 211, 164, .72);
+}
+
+.theme-heritage-night .footer a:hover,
+.theme-heritage-night .footer a:focus-visible {
+  color: #ffe1a9;
+  background: rgba(207, 137, 50, .12);
+}
+
+.theme-heritage-night .footer span {
+  color: #e4b465;
+  border-color: rgba(220, 158, 70, .5);
+  background: rgba(218, 151, 61, .04);
+}
+
+.theme-heritage-night .simple-page {
+  color: #f0cf94;
+  border-color: rgba(220, 160, 65, .78);
+  background:
+    radial-gradient(circle at 25% 52%, rgba(126, 43, 22, .34), transparent 34%),
+    radial-gradient(circle at 75% 27%, rgba(98, 34, 18, .29), transparent 30%),
+    linear-gradient(125deg, #220b07, #060201 72%);
+}
+
+@media (max-width: 760px) {
+  .theme-heritage-night .memory-card {
+    border-color: rgba(207, 145, 58, .44);
+    box-shadow:
+      0 16px 34px rgba(0, 0, 0, .38),
+      0 1px rgba(255, 224, 171, .08) inset;
+  }
+
+  .theme-heritage-night .footer a:nth-child(-n+2) {
+    border-bottom-color: rgba(207, 145, 58, .22);
+  }
+
+  .theme-heritage-night .mobile-dock__cta {
+    color: #1b0a04;
+    border-color: rgba(248, 211, 140, .76);
+    background:
+      linear-gradient(112deg, rgba(255, 248, 215, .65), transparent 36%),
+      linear-gradient(135deg, #f0ce83, #cf8d32);
+  }
+}
