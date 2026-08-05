@@ -1919,8 +1919,8 @@ svg {
 }
 
 @keyframes hero-wave-breathe {
-  from { transform: translate3d(-.15%, -.1%, 0) scaleX(1.003) scaleY(1.0015); }
-  to { transform: translate3d(-.75%, .55%, 0) scaleX(1.018) scaleY(1.006); }
+  from { transform: translate3d(-.3%, -.5%, 0) scaleX(1.008) scaleY(1.01); }
+  to { transform: translate3d(-2.5%, 3.5%, 0) scaleX(1.12) scaleY(1.09); }
 }
 
 @keyframes hero-title-sway {
