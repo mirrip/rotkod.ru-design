@@ -1820,26 +1820,101 @@ svg {
   }
 
   .hero__ember--one {
-    animation: hero-canvas-light-one 32s ease-in-out -9s infinite alternate;
+    animation: hero-canvas-light-one 20s ease-in-out -6s infinite alternate;
     will-change: transform, opacity;
   }
 
   .hero__ember--two {
-    animation: hero-canvas-light-two 41s ease-in-out -21s infinite alternate-reverse;
+    animation: hero-canvas-light-two 26s ease-in-out -13s infinite alternate-reverse;
     will-change: transform, opacity;
   }
 
   .hero h1 {
     animation:
       hero-title-intro 1.18s cubic-bezier(.2, .74, .26, 1) .12s both,
-      hero-gold-glint 30s ease-in-out 2.5s infinite,
+      hero-gold-glint 22s ease-in-out 2.5s infinite,
       hero-title-sway 18s ease-in-out 1.4s infinite alternate;
     transform-origin: 14% 58%;
     will-change: translate, rotate;
   }
 
   .hero__actions .button::after {
-    animation: hero-button-glint 30s ease-in-out 7.5s infinite;
+    animation: hero-button-glint 18s ease-in-out 6s infinite;
+  }
+
+  .hero__lead {
+    animation: hero-copy-drift 11s ease-in-out -3s infinite;
+  }
+
+  .hero__actions {
+    animation: hero-actions-float 8s ease-in-out -2s infinite;
+    will-change: translate;
+  }
+
+  .hero__trust {
+    animation: hero-trust-breathe 10s ease-in-out -5s infinite;
+  }
+
+  .brand {
+    animation: hero-brand-glow 17s ease-in-out -4s infinite;
+  }
+
+  .menu-button {
+    animation: hero-icon-drift 9s ease-in-out -2s infinite alternate;
+  }
+
+  .header__actions .icon-button:nth-child(1) {
+    animation: hero-icon-drift 8s ease-in-out -5s infinite alternate-reverse;
+  }
+
+  .header__actions .icon-button:nth-child(2) {
+    animation: hero-icon-drift 10s ease-in-out -7s infinite alternate;
+  }
+
+  .hero__progress i.is-active {
+    animation: hero-progress-pulse 3.2s ease-in-out infinite;
+  }
+
+  .memory.is-visible .memory-card {
+    animation: memory-card-idle 9s ease-in-out infinite alternate;
+    will-change: translate;
+  }
+
+  .memory.is-visible .memory-card:nth-child(2) {
+    animation-delay: -6.5s;
+    animation-duration: 10.5s;
+  }
+
+  .memory.is-visible .memory-card:nth-child(3) {
+    animation-delay: -3.5s;
+    animation-duration: 8.5s;
+  }
+
+  .memory.is-visible .memory-card:nth-child(4) {
+    animation-delay: -8s;
+    animation-duration: 11s;
+  }
+}
+
+@media (max-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .hero__ember {
+    display: block;
+    opacity: .62;
+    filter: blur(18px);
+  }
+
+  .hero__ember--one {
+    top: 12%;
+    left: 18%;
+    width: 42%;
+    height: 22%;
+  }
+
+  .hero__ember--two {
+    bottom: 18%;
+    left: 6%;
+    width: 48%;
+    height: 15%;
   }
 }
 
@@ -1860,13 +1935,55 @@ svg {
 }
 
 @keyframes hero-canvas-light-one {
-  from { opacity: .78; transform: translate3d(-1.5%, .5%, 0) scale(.99); }
-  to { opacity: .9; transform: translate3d(4%, -2%, 0) scale(1.025); }
+  0% { opacity: .58; transform: translate3d(-8%, 5%, 0) scale(.9); }
+  52% { opacity: .92; transform: translate3d(9%, -7%, 0) scale(1.13); }
+  100% { opacity: .7; transform: translate3d(18%, 4%, 0) scale(.98); }
 }
 
 @keyframes hero-canvas-light-two {
-  from { opacity: .72; transform: translate3d(-1%, -1%, 0) scale(1.01); }
-  to { opacity: .84; transform: translate3d(3%, 1.5%, 0) scale(.985); }
+  0% { opacity: .52; transform: translate3d(-6%, -4%, 0) scale(1.08); }
+  48% { opacity: .86; transform: translate3d(12%, 8%, 0) scale(.92); }
+  100% { opacity: .65; transform: translate3d(22%, -6%, 0) scale(1.15); }
+}
+
+@keyframes hero-copy-drift {
+  0%, 100% { opacity: .76; translate: 0 0; }
+  48% { opacity: .91; translate: 2px 0; }
+  72% { opacity: .84; translate: -1px 0; }
+}
+
+@keyframes hero-actions-float {
+  0%, 100% { translate: 0 0; }
+  44% { translate: 0 -4px; }
+  72% { translate: 1px -1px; }
+}
+
+@keyframes hero-trust-breathe {
+  0%, 100% { opacity: .68; translate: 0 0; }
+  50% { opacity: .92; translate: 1px -1px; }
+}
+
+@keyframes hero-brand-glow {
+  0%, 100% { filter: brightness(1); }
+  48% { filter: brightness(1.13); }
+  56% { filter: brightness(1.04); }
+}
+
+@keyframes hero-icon-drift {
+  0% { translate: 0 1px; rotate: -.8deg; }
+  48% { translate: 1px -2px; rotate: .9deg; }
+  100% { translate: -1px 0; rotate: -.25deg; }
+}
+
+@keyframes hero-progress-pulse {
+  0%, 100% { opacity: .82; transform: scaleX(1.02); }
+  50% { opacity: 1; transform: scaleX(1.12); }
+}
+
+@keyframes memory-card-idle {
+  0% { translate: 0 0; }
+  52% { translate: 0 -3px; }
+  100% { translate: 1px -1px; }
 }
 
 @keyframes hero-title-intro {
@@ -1948,6 +2065,19 @@ svg {
 
   .hero__actions .button::after {
     display: none;
+  }
+
+  .hero__lead,
+  .hero__actions,
+  .hero__trust,
+  .brand,
+  .menu-button,
+  .header__actions .icon-button,
+  .hero__progress i,
+  .memory-card {
+    animation: none !important;
+    translate: none;
+    rotate: none;
   }
 
   .hero__slide,
