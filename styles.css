@@ -1238,7 +1238,7 @@ svg {
   }
 
   .hero__photo-slot {
-    inset: 37.5% 0 18.5%;
+    inset: 37.5% 0 22%;
     background:
       radial-gradient(circle at 68% 52%, rgba(118, 53, 29, .32), transparent 42%),
       #120605;
