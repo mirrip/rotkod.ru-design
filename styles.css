@@ -1232,7 +1232,7 @@ svg {
     border-radius: 0;
     background:
       radial-gradient(circle at 86% 14%, rgba(108, 39, 22, .42), transparent 34%),
-      linear-gradient(180deg, rgba(42, 15, 8, .96), #100503 46%, #080302 100%);
+      linear-gradient(160deg, #2a0f08 0, #1c0906 52%, #160704 100%);
     -webkit-mask: var(--hero-bottom-wave-mask) 0 0 / 100% 100% no-repeat;
     mask: var(--hero-bottom-wave-mask) 0 0 / 100% 100% no-repeat;
     filter: drop-shadow(0 -7px 10px rgba(27, 8, 4, .62));
