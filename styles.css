@@ -2131,7 +2131,10 @@ svg {
   }
 
   .hero {
+    min-height: 100vh;
+    min-height: 100svh;
     color: #ecc486;
+    border-radius: 22px 22px 57.6px 46.08px;
     background: #090201;
   }
 
