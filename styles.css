@@ -2109,3 +2109,76 @@ svg {
     transform: translate3d(var(--hero-shift-x), 0, 0) scale(var(--hero-scale-start));
   }
 }
+
+/*
+ * Desktop-only presentation pass.
+ * The mobile composition below 761px is intentionally kept pixel-identical.
+ */
+@media (min-width: 761px) {
+  html,
+  body {
+    background: #f5eadc;
+  }
+
+  .site-shell {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hero {
+    color: #ecc486;
+    background: #090201;
+  }
+
+  .hero__photo-slot {
+    background:
+      radial-gradient(circle at 76% 42%, rgba(86, 29, 18, .24), transparent 34%),
+      linear-gradient(135deg, #0c0201, #1b0704 56%, #050101);
+  }
+
+  .hero__transition {
+    background: rgba(27, 5, 3, .7);
+    opacity: .66;
+  }
+
+  .hero__dark-surface {
+    background:
+      radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(101, 27, 15, .31), transparent 33%),
+      radial-gradient(circle at 12% 79%, rgba(72, 17, 10, .42), transparent 30%),
+      radial-gradient(circle at 82% 8%, rgba(77, 20, 12, .17), transparent 28%),
+      linear-gradient(128deg, #0b0201 0, #1b0503 46%, #0e0302 76%, #040101 100%);
+    box-shadow: -30px -20px 60px rgba(52, 10, 5, .28) inset;
+  }
+
+  .header {
+    background:
+      radial-gradient(circle at 72% -80%, rgba(101, 31, 17, .12), transparent 54%),
+      linear-gradient(90deg, rgba(14, 3, 2, .92), rgba(24, 5, 3, .76) 58%, rgba(10, 2, 1, .7));
+  }
+
+  .brand,
+  .hero h1 {
+    color: #ecc486;
+  }
+
+  .hero__eyebrow {
+    color: rgba(236, 191, 122, .72);
+  }
+
+  .hero__lead {
+    color: rgba(249, 237, 219, .78);
+  }
+
+  .memory {
+    background: linear-gradient(118deg, #f4e7d7, #fffaf1 51%, #efe2d3);
+  }
+
+  .memory::before {
+    display: none;
+  }
+}
