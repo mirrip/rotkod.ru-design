@@ -634,6 +634,10 @@ svg {
   transform: scaleX(1.06);
 }
 
+.hero__scroll-cue {
+  display: none;
+}
+
 /* Memory cards */
 .memory {
   position: relative;
@@ -2177,11 +2181,78 @@ svg {
     color: rgba(249, 237, 219, .78);
   }
 
+  .hero__scroll-cue {
+    position: absolute;
+    z-index: 5;
+    bottom: 16px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    color: rgba(241, 205, 148, .72);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    transition: color .25s ease;
+  }
+
+  .hero__scroll-cue > i {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 25px;
+    overflow: hidden;
+    background: rgba(213, 158, 83, .25);
+  }
+
+  .hero__scroll-cue > i::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 42%;
+    content: "";
+    background: #f0c781;
+    box-shadow: 0 0 7px rgba(235, 180, 94, .55);
+    animation: scroll-cue-drop 2.6s cubic-bezier(.45, 0, .25, 1) infinite;
+  }
+
+  .hero__scroll-cue:hover,
+  .hero__scroll-cue:focus-visible {
+    color: #f2ce95;
+  }
+
   .memory {
     background: linear-gradient(118deg, #f4e7d7, #fffaf1 51%, #efe2d3);
   }
 
   .memory::before {
     display: none;
+  }
+}
+
+@keyframes scroll-cue-drop {
+  0%, 14% {
+    opacity: 0;
+    transform: translateY(-110%);
+  }
+  36% {
+    opacity: 1;
+  }
+  72%, 100% {
+    opacity: 0;
+    transform: translateY(245%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-cue > i::after {
+    opacity: .7;
+    animation: none;
+    transform: translateY(72%);
   }
 }
