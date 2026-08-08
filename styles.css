@@ -2135,6 +2135,8 @@ svg {
   }
 
   .hero {
+    /* Main desktop text-canvas control: 1 = opaque, 0 = transparent. */
+    --desktop-text-canvas-opacity: .74;
     min-height: 100vh;
     min-height: 100svh;
     color: #ecc486;
@@ -2150,10 +2152,11 @@ svg {
 
   .hero__transition {
     background: rgba(27, 5, 3, .7);
-    opacity: .66;
+    opacity: calc(var(--desktop-text-canvas-opacity) * .22);
   }
 
   .hero__dark-surface {
+    opacity: var(--desktop-text-canvas-opacity);
     background:
       radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(101, 27, 15, .31), transparent 33%),
       radial-gradient(circle at 12% 79%, rgba(72, 17, 10, .42), transparent 30%),
