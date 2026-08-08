@@ -2136,7 +2136,7 @@ svg {
 
   .hero {
     /* Main desktop text-canvas control: 1 = opaque, 0 = transparent. */
-    --desktop-text-canvas-opacity: .85;
+    --desktop-text-canvas-opacity: .80;
     min-height: 100vh;
     min-height: 100svh;
     color: #ecc486;
