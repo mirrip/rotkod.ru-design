@@ -2184,6 +2184,28 @@ svg {
     color: rgba(249, 237, 219, .78);
   }
 
+  .hero__actions .button--outline {
+    color: #efcc96;
+    border-color: rgba(210, 143, 58, .92);
+    background:
+      linear-gradient(115deg, rgba(255, 219, 157, .08), transparent 42%),
+      linear-gradient(180deg, rgba(35, 13, 8, .98), rgba(13, 5, 3, .96));
+    box-shadow:
+      0 10px 24px rgba(5, 1, 0, .34),
+      0 1px 0 rgba(255, 222, 164, .09) inset;
+  }
+
+  .hero__actions .button--outline:hover,
+  .hero__actions .button--outline:focus-visible {
+    color: #fff0d3;
+    background:
+      linear-gradient(115deg, rgba(255, 225, 172, .13), transparent 42%),
+      linear-gradient(180deg, rgba(46, 18, 10, .99), rgba(19, 7, 4, .98));
+    box-shadow:
+      0 13px 28px rgba(5, 1, 0, .4),
+      0 0 18px rgba(207, 137, 47, .11);
+  }
+
   .hero__scroll-cue {
     position: absolute;
     z-index: 5;
